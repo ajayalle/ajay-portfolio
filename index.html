@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alle Ajay — Software Developer | Python × AI/ML × Electronics</title>
+<meta name="description" content="Portfolio of Alle Ajay — software developer building practical projects with Python, AI/ML, embedded systems and electronics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Allura&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#050505;
+    --black-2:#0b0b0b;
+    --off-white:#f3f1ed;
+    --gray:#a6a6a6;
+    --gray-dim:#6b6b68;
+    --crimson:#8f1018;
+    --crimson-bright:#b8232c;
+    --burgundy:#45080c;
+    --line: rgba(243,241,237,0.12);
+    --line-bright: rgba(243,241,237,0.22);
+    --ease: cubic-bezier(.19,1,.22,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+    .hero-slideshow .hero-slide{transition:none !important;}
+  }
+  body{
+    background:var(--black);
+    color:var(--off-white);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* grain */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:999;
+    pointer-events:none;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  ::selection{background:var(--crimson);color:var(--off-white);}
+
+  .display{font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:0.01em; line-height:0.92;}
+  .label{font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gray); font-weight:500;}
+  .label .dot{color:var(--crimson-bright);}
+
+  section{position:relative; width:100%;}
+  .wrap{max-width:1400px; margin:0 auto; padding:0 6vw;}
+
+  /* ===================== NAV ===================== */
+  header.nav{
+    position:fixed; top:0; left:0; width:100%; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 6vw;
+    mix-blend-mode:difference;
+    transition:padding 0.4s var(--ease);
+  }
+  header.nav.scrolled{padding:16px 6vw;}
+  .nav-logo{font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.08em;}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links li a{
+    font-size:11px; letter-spacing:0.16em; text-transform:uppercase; font-weight:500;
+    position:relative; padding-bottom:4px;
+  }
+  .nav-links li a::after{
+    content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--crimson-bright); transition:width 0.35s var(--ease);
+  }
+  .nav-links li a:hover::after{width:100%;}
+  .nav-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:600; background:none; border:none;}
+  .nav-toggle span{width:24px; height:1.5px; background:var(--off-white);}
+
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--black); z-index:450;
+    display:flex; flex-direction:column; justify-content:center; gap:22px; padding:0 8vw;
+    transform:translateY(-100%); transition:transform 0.55s var(--ease);
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{font-family:'Anton',sans-serif; font-size:34px; text-transform:uppercase;}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;
+    padding:110px 6vw 40px; overflow:hidden;
+  }
+  .hero-top{display:flex; justify-content:space-between; align-items:flex-start;}
+  .hero-top .avail{display:flex; align-items:center; gap:8px;}
+  .hero-top .avail .plus{color:var(--crimson-bright); font-size:14px;}
+
+  .hero-bg-type{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-family:'Anton',sans-serif; text-transform:uppercase;
+    font-size:min(15vw, 220px); line-height:0.78;
+    color:transparent; -webkit-text-stroke:1px rgba(143,16,24,0.35);
+    color:rgba(143,16,24,0.12);
+    white-space:nowrap; z-index:0; pointer-events:none;
+    user-select:none;
+  }
+
+  .hero-mid{
+    position:relative; flex:1; display:flex; align-items:center; justify-content:center;
+    min-height:44vh;
+  }
+
+  /* ===================== HERO PORTRAIT — NATURAL PNG SIZING ===================== */
+  .hero-portrait{
+    position:relative;
+    z-index:2;
+    width:auto;
+    height:auto;
+    max-width:min(72vw, 520px);
+    max-height:58vh;
+    overflow:visible;
+    border:none;
+    background:transparent;
+    isolation:isolate;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:width .8s var(--ease), height .8s var(--ease), transform .4s var(--ease);
+  }
+
+  .hero-slideshow{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    isolation:isolate;
+    background:transparent;
+  }
+
+  .hero-slideshow .hero-slide{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:100%;
+    transform:translate(-50%,-50%);
+    object-fit:contain;
+    object-position:center center;
+    filter:grayscale(1) contrast(1.12) brightness(.94);
+    border:none;
+    background:transparent;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .95s var(--ease);
+    will-change:opacity;
+  }
+
+  .hero-slideshow .hero-slide.active{
+    opacity:1;
+    visibility:visible;
+  }
+
+  /* Transparent portrait overlay for the cinematic hero. */
+  .hero-portrait::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(143,16,24,.05), rgba(5,5,5,.24) 92%);
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    z-index:3;
+  }
+
+  .hero-portrait::before{
+    content:"";
+    position:absolute;
+    left:-12px;
+    top:-12px;
+    right:12px;
+    bottom:12px;
+    border:1px solid rgba(184,35,44,.38);
+    z-index:-1;
+    opacity:.55;
+    pointer-events:none;
+  }
+
+  @media (max-width:900px){
+    .hero-portrait{
+      max-width:min(78vw, 440px);
+      max-height:52vh;
+    }
+  }
+
+  @media (max-width:760px){
+    .hero-portrait{
+      max-width:78vw;
+      max-height:48vh;
+    }
+    .hero-slideshow .hero-slide{
+      object-position:center center;
+    }
+  }
+
+  .hero-bottom{
+    position:relative; z-index:2; display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; flex-wrap:wrap; padding-top:30px; border-top:none;
+  }
+  .hero-intro-line{font-size:13px; color:var(--gray); font-family:'Inter'; font-style:italic; margin-bottom:6px;}
+
+  /* HERO WHO AM I — replaces the old signature treatment */
+  /* WHO AM I? — clean replacement for the old signature, kept at the signature position */
+  .hero-whoami{
+    position:absolute;
+    left:38%;
+    bottom:30px;
+    z-index:8;
+    font-family:'Anton',sans-serif;
+    font-size:clamp(34px,5vw,72px);
+    font-weight:400;
+    line-height:1;
+    letter-spacing:.015em;
+    white-space:nowrap;
+    color:transparent;
+    -webkit-text-stroke:1.15px rgba(243,241,237,.72);
+    text-shadow:0 0 18px rgba(0,0,0,.35);
+    pointer-events:none;
+    user-select:none;
+  }
+  @media (max-width:760px){
+    .hero-whoami{left:5vw;bottom:22px;font-size:clamp(40px,9vw,52px);}
+  }
+  .hero-name{font-size:clamp(48px,9vw,120px);}
+  .hero-roles{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px;}
+  .hero-roles span{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray);}
+  .hero-roles span:not(:last-child)::after{content:"·"; margin-left:14px; color:var(--crimson-bright);}
+  .hero-tag{font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--crimson-bright); margin-top:16px;}
+  .hero-desc{max-width:340px; font-size:14.5px; line-height:1.6; color:var(--gray); margin-top:14px;}
+  .hero-meta{text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:18px;}
+  .hero-scroll{display:flex; align-items:center; gap:8px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gray);}
+  .hero-scroll .arrow{display:inline-block; animation:bob 1.8s infinite ease-in-out;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  [data-reveal]{opacity:0; transform:translateY(28px); transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);}
+  [data-reveal].in{opacity:1; transform:translateY(0);}
+  [data-reveal="1"]{transition-delay:0.05s;}
+  [data-reveal="2"]{transition-delay:0.15s;}
+  [data-reveal="3"]{transition-delay:0.25s;}
+  [data-reveal="4"]{transition-delay:0.35s;}
+
+  /* ===================== SECTION HEADS ===================== */
+  .section-pad{padding:130px 0;}
+  .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:70px; flex-wrap:wrap;}
+  .sec-num{font-size:12px; color:var(--gray-dim); letter-spacing:0.14em;}
+  .sec-title{font-size:clamp(40px,6.5vw,84px);}
+  .rule{height:1px; background:var(--line); width:100%; margin:0;}
+
+
+  /* ===================== JOURNEY / ANIMATED ROAD ===================== */
+  .journey{
+    background:var(--black-2);
+    padding:130px 0 90px;
+    position:relative;
+  }
+  .journey-head{
+    padding:0 6vw;
+    margin-bottom:60px;
+  }
+  .journey-track{
+    position:relative;
+    padding:0 6vw;
+  }
+
+  .road-wrap{
+    padding:20px 6vw 20px;
+    overflow:hidden;
+  }
+
+  .road{
+    position:relative;
+    max-width:1120px;
+    margin:0 auto;
+    padding:20px 0 30px;
+  }
+
+  .road-centerline{
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:6px;
+    transform:translateX(-50%);
+    background:#242424;
+    border-radius:999px;
+    box-shadow:inset 0 0 0 1px rgba(243,241,237,.06);
+  }
+
+  .road-progress{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:6px;
+    height:0;
+    transform:translateX(-50%);
+    background:linear-gradient(180deg,var(--crimson-bright),#ff4d55);
+    border-radius:999px;
+    box-shadow:0 0 18px rgba(184,35,44,.55);
+    z-index:1;
+    transition:height .12s linear;
+  }
+
+  .road-stop{
+    position:relative;
+    width:50%;
+    padding:55px 58px;
+    min-height:190px;
+    z-index:2;
+    opacity:.34;
+    transform:translateY(28px);
+    transition:
+      opacity .65s var(--ease),
+      transform .65s var(--ease);
+  }
+
+  .road-stop.active{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .road-stop.left{
+    padding-right:80px;
+    text-align:right;
+  }
+
+  .road-stop.right{
+    margin-left:50%;
+    padding-left:80px;
+  }
+
+  .road-marker{
+    position:absolute;
+    top:60px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#101010;
+    border:2px solid #3a3a3a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    z-index:3;
+    transition:
+      border-color .45s var(--ease),
+      background .45s var(--ease),
+      box-shadow .45s var(--ease),
+      transform .45s var(--ease);
+  }
+
+  .road-stop.left .road-marker{right:-29px;}
+  .road-stop.right .road-marker{left:-29px;}
+
+  .road-stop.active .road-marker{
+    border-color:var(--crimson-bright);
+    background:var(--crimson);
+    box-shadow:
+      0 0 0 7px rgba(184,35,44,.09),
+      0 0 25px rgba(184,35,44,.5);
+    transform:scale(1.08);
+  }
+
+  .road-card{
+    padding:26px 28px;
+    border:1px solid var(--line);
+    background:rgba(8,8,8,.88);
+    backdrop-filter:blur(8px);
+    position:relative;
+    transition:
+      border-color .45s var(--ease),
+      background .45s var(--ease),
+      transform .45s var(--ease),
+      box-shadow .45s var(--ease);
+  }
+
+  .road-card::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:48px;
+    height:1px;
+    background:var(--line-bright);
+  }
+
+  .road-stop.left .road-card::before{right:-48px;}
+  .road-stop.right .road-card::before{left:-48px;}
+
+  .road-stop.active .road-card{
+    border-color:rgba(184,35,44,.55);
+    background:rgba(22,7,8,.92);
+    box-shadow:0 18px 45px rgba(0,0,0,.25);
+  }
+
+  .road-title{
+    font-size:clamp(28px,4vw,52px);
+    margin-bottom:10px;
+  }
+
+  .road-card p{
+    font-size:13.5px;
+    line-height:1.7;
+    color:var(--gray);
+    margin-bottom:17px;
+  }
+
+  .road-stop.left .stage-tags{justify-content:flex-end;}
+  .road-stop.future .road-marker{border-style:dashed;}
+
+  /* Mobile: same animated road concept, but optimized for narrow screens. */
+  @media(max-width:760px){
+    .journey{
+      padding:90px 0 70px;
+    }
+
+    .journey-head{
+      padding:0 7vw;
+      margin-bottom:38px;
+    }
+
+    .journey-head .sec-head{
+      margin-bottom:0;
+    }
+
+    .journey-head > p{
+      max-width:100% !important;
+      margin-top:22px;
+      font-size:13px !important;
+      line-height:1.7 !important;
+    }
+
+    .road-wrap{
+      padding:8px 5vw 10px;
+    }
+
+    .road{
+      width:100%;
+      padding:10px 0 24px 34px;
+      margin:0;
+    }
+
+    .road-centerline,
+    .road-progress{
+      left:14px;
+      transform:none;
+      width:4px;
+    }
+
+    .road-stop,
+    .road-stop.left,
+    .road-stop.right{
+      width:100%;
+      margin:0;
+      padding:42px 0 42px 34px;
+      min-height:0;
+      text-align:left;
+    }
+
+    .road-stop:first-of-type{
+      padding-top:28px;
+    }
+
+    .road-stop.left .road-marker,
+    .road-stop.right .road-marker{
+      left:-48px;
+      right:auto;
+      top:42px;
+      width:48px;
+      height:48px;
+      font-size:22px;
+    }
+
+    .road-stop.left .road-card::before,
+    .road-stop.right .road-card::before{
+      left:-34px;
+      right:auto;
+      width:34px;
+    }
+
+    .road-card{
+      padding:22px 19px;
+      border-radius:2px;
+    }
+
+    .road-title{
+      font-size:clamp(30px,9vw,43px);
+      margin-bottom:9px;
+    }
+
+    .road-card p{
+      font-size:13px;
+      line-height:1.75;
+      margin-bottom:15px;
+    }
+
+    .road-stop.left .stage-tags{
+      justify-content:flex-start;
+    }
+
+    .stage-tags{
+      gap:7px;
+    }
+
+    .stage-tags span{
+      font-size:10px;
+      padding:5px 9px;
+    }
+
+    .road-stop.active .road-marker{
+      transform:scale(1.06);
+    }
+
+    .road-stop.active .road-card{
+      box-shadow:0 14px 32px rgba(0,0,0,.22);
+    }
+  }
+
+  @media(max-width:390px){
+    .road{
+      padding-left:31px;
+    }
+
+    .road-centerline,
+    .road-progress{
+      left:12px;
+    }
+
+    .road-stop,
+    .road-stop.left,
+    .road-stop.right{
+      padding-left:30px;
+    }
+
+    .road-stop.left .road-marker,
+    .road-stop.right .road-marker{
+      left:-45px;
+    }
+
+    .road-card{
+      padding:20px 16px;
+    }
+  }
+
+  .journey-end{
+    padding:70px 6vw 0;
+    text-align:center;
+  }
+
+  .journey-end .display{
+    font-size:clamp(32px,6vw,64px);
+  }
+
+  .journey-end p{
+    color:var(--gray);
+    margin-top:14px;
+    font-size:14px;
+    letter-spacing:.02em;
+  }
+
+  /* ===================== ABOUT ===================== */
+
+  .about{padding:130px 0;}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+
+  /* ABOUT — portrait in the visual background */
+  .about-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    isolation:isolate;
+    background:#070707;
+  }
+  .about-visual::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(180deg,rgba(5,5,5,.30),rgba(5,5,5,.78)),
+      url("ajay-portrait-3.png");
+    background-size:cover;
+    background-position:center 18%;
+    filter:grayscale(1) contrast(1.12);
+    opacity:.52;
+    transform:scale(1.04);
+    transition:transform .8s var(--ease), opacity .6s var(--ease);
+    z-index:0;
+  }
+  .about-visual:hover::before{
+    transform:scale(1.08);
+    opacity:.66;
+  }
+  .about-visual .bigword{
+    position:relative;
+    z-index:2;
+    font-family:'Anton',sans-serif;
+    font-size:min(16vw,140px);
+    color:rgba(243,241,237,.88);
+    -webkit-text-stroke:1px rgba(243,241,237,.35);
+    text-shadow:0 8px 30px rgba(0,0,0,.65);
+    text-transform:uppercase;
+    text-align:center;
+    line-height:.85;
+  }
+  .about-visual .cross{position:absolute;inset:0;z-index:1;pointer-events:none;}
+  .about-visual .cross span{position:absolute;background:var(--crimson);opacity:.65;}
+  .about-visual .cross .h{top:50%;left:0;right:0;height:1px;}
+  .about-visual .cross .v{left:50%;top:0;bottom:0;width:1px;}
+
+  .about-copy .lede{font-size:clamp(22px,2.6vw,32px); line-height:1.35; margin-bottom:26px;}
+  .about-copy .lede em{font-style:normal; color:var(--crimson-bright);}
+  .about-copy p{font-size:15px; line-height:1.75; color:var(--gray); margin-bottom:16px; max-width:480px;}
+  .about-focus{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px;}
+  .about-focus div{font-size:12px; letter-spacing:0.06em; color:var(--off-white); border-left:1px solid var(--crimson); padding-left:12px; padding-top:2px; padding-bottom:2px;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr;} }
+
+
+  /* ===================== SKILLS ===================== */
+  .skills{padding:130px 0; background:var(--black-2);}
+  .skill-groups{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line);}
+  .skill-group{background:var(--black-2); padding:36px 34px;}
+  .skill-group h3{font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--crimson-bright); margin-bottom:22px;}
+  .skill-list{list-style:none; display:flex; flex-direction:column;}
+  .skill-item{
+    padding:13px 0; border-bottom:1px solid var(--line); font-size:16px; font-weight:500;
+    display:flex; justify-content:space-between; align-items:center; cursor:default;
+    transition:padding-left 0.35s var(--ease), color 0.35s var(--ease);
+  }
+  .skill-item:last-child{border-bottom:none;}
+  .skill-item:hover{padding-left:12px; color:var(--off-white);}
+  .skill-item .note{
+    font-size:11px; color:var(--gray-dim); opacity:0; transform:translateX(-6px);
+    transition:all 0.35s var(--ease); text-align:right; max-width:52%; letter-spacing:0.02em;
+  }
+  .skill-item:hover .note{opacity:1; transform:translateX(0);}
+  @media (max-width:760px){ .skill-groups{grid-template-columns:1fr;} }
+
+  /* ===================== WORK ===================== */
+  .work{padding:130px 0;}
+  .project{
+    border-top:1px solid var(--line); padding:56px 0; display:grid;
+    grid-template-columns:70px 1fr auto; gap:30px; align-items:start; position:relative;
+    transition:padding-left 0.4s var(--ease);
+  }
+  .work .project:last-child{border-bottom:1px solid var(--line);}
+  .project:hover{padding-left:14px;}
+  .project-index{font-family:'Anton',sans-serif; font-size:15px; color:var(--gray-dim); padding-top:8px;}
+  .project-title{font-size:clamp(28px,4.2vw,56px); margin-bottom:10px; transition:color 0.3s;}
+  .project:hover .project-title{color:var(--off-white);}
+  .project-sub{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--crimson-bright); margin-bottom:16px;}
+  .project-desc{font-size:14.5px; line-height:1.7; color:var(--gray); max-width:580px; margin-bottom:20px;}
+  .project-tech{display:flex; flex-wrap:wrap; gap:8px 10px; margin-bottom:20px;}
+  .project-tech span{font-size:11px; color:var(--gray); border:1px solid var(--line); padding:5px 11px;}
+  .project-actions{display:flex; gap:22px;}
+  .project-actions a{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; position:relative; padding-bottom:3px;}
+  .project-actions a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--crimson-bright); transition:width 0.3s var(--ease);}
+  .project-actions a:hover::after{width:100%;}
+  .project-meta{text-align:right; padding-top:8px;}
+  .project-meta .view{font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gray-dim); opacity:0; transition:opacity 0.3s;}
+  .project:hover .project-meta .view{opacity:1;}
+  @media (max-width:760px){
+    .project{grid-template-columns:1fr; gap:14px;}
+    .project-meta{text-align:left;}
+  }
+  .py-sub{margin-top:10px;}
+  .py-list{display:grid; gap:14px; margin-top:6px;}
+  .py-list .pyi{display:flex; gap:14px; align-items:baseline; font-size:14px; color:var(--gray);}
+  .py-list .pyi b{font-family:'Anton',sans-serif; font-size:14px; color:var(--gray-dim); min-width:22px;}
+
+  /* ===================== EXPERIENCE ===================== */
+  .experience{padding:130px 0; background:var(--black-2);}
+  .timeline{position:relative; padding-left:34px;}
+  .timeline::before{content:""; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:var(--line);}
+  .tl-item{position:relative; padding-bottom:54px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-38px; top:6px; width:9px; height:9px; border-radius:50%;
+    background:var(--crimson-bright); box-shadow:0 0 12px rgba(184,35,44,0.55);
+  }
+  .tl-role{font-size:22px; font-weight:600; margin-bottom:4px;}
+  .tl-org{font-size:13px; color:var(--crimson-bright); letter-spacing:0.04em; margin-bottom:4px;}
+  .tl-dur{font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-dim); margin-bottom:16px;}
+  .tl-list{list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:16px;}
+  .tl-list li{font-size:14px; line-height:1.6; color:var(--gray); padding-left:16px; position:relative; max-width:600px;}
+  .tl-list li::before{content:"—"; position:absolute; left:0; color:var(--gray-dim);}
+  .tl-tech{display:flex; flex-wrap:wrap; gap:8px;}
+  .tl-tech span{font-size:11px; color:var(--gray); border:1px solid var(--line); padding:5px 11px;}
+
+  /* ===================== EDUCATION ===================== */
+  .education{padding:110px 0;}
+  .edu-row{display:grid; grid-template-columns:140px 1fr; gap:24px; padding:30px 0; border-top:1px solid var(--line); align-items:baseline;}
+  .education .edu-row:last-child{border-bottom:1px solid var(--line);}
+  .edu-year{font-size:12px; color:var(--gray-dim); letter-spacing:0.08em;}
+  .edu-deg{font-size:22px; margin-bottom:4px; font-weight:600;}
+  .edu-school{font-size:13px; color:var(--gray);}
+  .edu-cgpa{font-size:12px; color:var(--gray-dim); margin-top:6px;}
+  @media (max-width:640px){ .edu-row{grid-template-columns:1fr;} }
+
+  /* ===================== CERTIFICATIONS ===================== */
+  .certs{padding:110px 0; background:var(--black-2);}
+  .cert-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1px; background:var(--line); margin-top:10px;}
+  .cert-card{background:var(--black-2); padding:30px 28px; display:flex; flex-direction:column; justify-content:space-between; min-height:190px; transition:background 0.35s;}
+  .cert-card:hover{background:#101010;}
+  .cert-cat{font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--crimson-bright); margin-bottom:14px;}
+  .cert-name{font-size:18px; font-weight:600; line-height:1.3; margin-bottom:8px;}
+  .cert-org{font-size:12px; color:var(--gray);}
+  .cert-foot{display:flex; justify-content:space-between; align-items:center; margin-top:20px;}
+  .cert-year{font-size:11px; color:var(--gray-dim);}
+  .cert-btn{font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); position:relative;}
+  .cert-card:hover .cert-btn{color:var(--off-white);}
+
+  /* ===================== HIGHLIGHTS ===================== */
+  .highlights{padding:120px 0;}
+  .hl-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); margin-top:10px;}
+  .hl-card{background:var(--black); padding:38px 26px; min-height:190px; display:flex; flex-direction:column; justify-content:space-between;}
+  .hl-num{font-family:'Anton',sans-serif; font-size:34px; color:var(--crimson-bright);}
+  .hl-title{font-size:14px; letter-spacing:0.04em; line-height:1.4; margin-top:16px;}
+  @media (max-width:900px){ .hl-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .hl-grid{grid-template-columns:1fr;} }
+
+  /* ===================== RESUME CTA ===================== */
+  .resume-cta{
+    position:relative; padding:180px 0; text-align:center; overflow:hidden;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .resume-cta .bg-type{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-family:'Anton',sans-serif; font-size:min(11vw,150px); color:rgba(143,16,24,0.14);
+    text-transform:uppercase; white-space:nowrap; line-height:0.9; text-align:center; z-index:0;
+  }
+  .resume-cta-inner{position:relative; z-index:1;}
+  .resume-cta h2{font-size:clamp(34px,5.4vw,64px); margin-bottom:20px;}
+  .resume-cta p{color:var(--gray); font-size:15px; max-width:420px; margin:0 auto 40px;}
+  .cta-buttons{display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    padding:16px 34px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    border:1px solid var(--off-white); transition:all 0.35s var(--ease); display:inline-block;
+  }
+  .btn.primary{background:var(--off-white); color:var(--black);}
+  .btn.primary:hover{background:var(--crimson-bright); border-color:var(--crimson-bright); color:var(--off-white);}
+  .btn.ghost{border-color:var(--line-bright); color:var(--off-white);}
+  .btn.ghost:hover{border-color:var(--off-white);}
+
+  /* ===================== CONTACT ===================== */
+  .contact{padding:150px 0 100px;}
+  .contact-top{margin-bottom:70px;}
+  .contact-top p{color:var(--gray); margin-top:18px; font-size:15px; max-width:380px;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .contact-links{display:flex; flex-direction:column;}
+  .contact-links a{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 0; border-top:1px solid var(--line); font-size:18px; font-weight:500;
+  }
+  .contact-links a:last-child{border-bottom:1px solid var(--line);}
+  .contact-links a .arrow-r{color:var(--crimson-bright); opacity:0; transform:translateX(-6px); transition:all 0.3s var(--ease);}
+  .contact-links a:hover .arrow-r{opacity:1; transform:translateX(0);}
+  .contact-links a .cl-label{font-size:11px; letter-spacing:0.14em; color:var(--gray-dim);}
+  form.contact-form{display:flex; flex-direction:column; gap:26px;}
+  .field{position:relative;}
+  .field label{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-dim); display:block; margin-bottom:10px;}
+  .field input, .field textarea{
+    width:100%; background:transparent; border:none; border-bottom:1px solid var(--line);
+    color:var(--off-white); font-family:'Inter'; font-size:15px; padding:8px 0; outline:none;
+    transition:border-color 0.3s;
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--crimson-bright);}
+  .field textarea{resize:none; min-height:70px;}
+  form.contact-form button{
+    align-self:flex-start; margin-top:8px; background:none; border:1px solid var(--off-white);
+    color:var(--off-white); padding:15px 32px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    cursor:pointer; transition:all 0.35s var(--ease); font-family:'Inter';
+  }
+  form.contact-form button:hover{background:var(--crimson-bright); border-color:var(--crimson-bright);}
+  @media (max-width:860px){ .contact-grid{grid-template-columns:1fr;} }
+
+  /* ===================== FOOTER ===================== */
+  footer{border-top:1px solid var(--line); padding:50px 6vw 40px;}
+  .foot-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; margin-bottom:40px;}
+  .foot-logo{font-family:'Anton',sans-serif; font-size:20px; letter-spacing:0.06em;}
+  .foot-tag{font-size:11px; letter-spacing:0.14em; color:var(--gray-dim); margin-top:8px; text-transform:uppercase;}
+  .foot-links{display:flex; gap:22px;}
+  .foot-links a{font-size:12px; color:var(--gray); letter-spacing:0.04em;}
+  .foot-links a:hover{color:var(--off-white);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:20px; border-top:1px solid var(--line);}
+  .foot-bottom span{font-size:11px; color:var(--gray-dim);}
+  .back-top{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray);}
+  .back-top:hover{color:var(--off-white);}
+
+  :focus-visible{outline:1px solid var(--crimson-bright); outline-offset:3px;}
+  @media (max-width:860px){ .nav-links{display:none;} .nav-toggle{display:flex;} }
+
+  @media(max-width:760px){
+    body{overflow-x:hidden;}
+    .wrap{padding-left:7vw;padding-right:7vw;}
+    .section-pad{padding-top:90px;padding-bottom:90px;}
+  }
+
+
+  /* INTERACTIVE RED SWEEP — hover on desktop, tap on mobile */
+  .skill-item,
+  .project,
+  .edu-row,
+  .cert-card{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  .skill-item::before,
+  .project::before,
+  .edu-row::before,
+  .cert-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:linear-gradient(
+      90deg,
+      rgba(184,35,44,.34) 0%,
+      rgba(184,35,44,.18) 48%,
+      rgba(184,35,44,0) 100%
+    );
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform .6s var(--ease);
+    pointer-events:none;
+  }
+
+  .skill-item:hover::before,
+  .project:hover::before,
+  .edu-row:hover::before,
+  .cert-card:hover::before,
+  .skill-item.touch-active::before,
+  .project.touch-active::before,
+  .edu-row.touch-active::before,
+  .cert-card.touch-active::before{
+    transform:scaleX(1);
+  }
+
+  .skill-item > *,
+  .project > *,
+  .edu-row > *,
+  .cert-card > *{
+    position:relative;
+    z-index:2;
+  }
+
+  .skill-item:hover{
+    padding-left:12px;
+  }
+
+  .project:hover{
+    padding-left:14px;
+  }
+
+  .edu-row:hover{
+    padding-left:14px;
+    border-color:rgba(184,35,44,.32);
+  }
+
+  .cert-card:hover{
+    transform:translateY(-3px);
+    background:rgba(16,16,16,.88);
+  }
+
+  @media(max-width:760px){
+    .skill-item:active::before,
+    .project:active::before,
+    .edu-row:active::before,
+    .cert-card:active::before{
+      transform:scaleX(1);
+    }
+    .skill-item.touch-active,
+    .project.touch-active,
+    .edu-row.touch-active,
+    .cert-card.touch-active{
+      transform:none;
+    }
+  }
+
+
+  /* RED FOOTER */
+  footer{
+    border-top:1px solid rgba(243,241,237,.25);
+    padding:50px 6vw 40px;
+    background:linear-gradient(135deg,#7d0d14 0%,#a71922 48%,#5d090e 100%);
+    color:var(--off-white);
+  }
+  footer .foot-tag,
+  footer .foot-links a,
+  footer .foot-bottom span,
+  footer .back-top{
+    color:rgba(243,241,237,.82);
+  }
+  footer .foot-links a:hover,
+  footer .back-top:hover{
+    color:#fff;
+  }
+
+  /* CERTIFICATE MODAL */
+  .cert-modal{
+    position:fixed;
+    inset:0;
+    z-index:1200;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(8px);
+  }
+  .cert-modal.open{display:flex;}
+  .cert-modal-panel{
+    position:relative;
+    width:min(1000px,94vw);
+    height:min(88vh,850px);
+    background:#0b0b0b;
+    border:1px solid rgba(243,241,237,.18);
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
+    overflow:hidden;
+  }
+  .cert-modal-head{
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    border-bottom:1px solid var(--line);
+    background:#0d0d0d;
+  }
+  .cert-modal-title{
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gray);
+  }
+  .cert-modal-close{
+    width:36px;
+    height:36px;
+    border:1px solid var(--line-bright);
+    background:transparent;
+    color:var(--off-white);
+    cursor:pointer;
+    font-size:20px;
+    line-height:1;
+  }
+  .cert-modal-close:hover{
+    background:var(--crimson-bright);
+    border-color:var(--crimson-bright);
+  }
+  .cert-modal-content{
+    width:100%;
+    height:calc(100% - 58px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#050505;
+  }
+  .cert-modal-content iframe{
+    width:100%;
+    height:100%;
+    border:0;
+  }
+  .cert-modal-content img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+  }
+  .cert-empty{
+    color:var(--gray);
+    text-align:center;
+    padding:40px;
+    line-height:1.7;
+  }
+  .cert-btn{
+    cursor:pointer;
+  }
+
+  /* =========================================================
+     AJAY 2.0 — ADVANCED INTERACTIVE LAYER
+     ========================================================= */
+
+  /* About reference-style composition */
+  .about-visual{
+    min-height:620px;
+    aspect-ratio:auto;
+    background:
+      radial-gradient(circle at 38% 48%, rgba(184,35,44,.30), transparent 38%),
+      radial-gradient(circle at 55% 70%, rgba(184,35,44,.13), transparent 42%),
+      #050505;
+  }
+  .about-visual::before{
+    content:"";
+    position:absolute;
+    inset:auto 5% 0 5%;
+    width:90%;
+    height:100%;
+    background-image:url("ajay-portrait-3.png");
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center bottom;
+    filter:grayscale(.15) contrast(1.06) brightness(.96);
+    opacity:.95;
+    transform:none;
+    z-index:1;
+    transition:transform .8s var(--ease), opacity .6s var(--ease);
+  }
+  .about-visual::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg, rgba(5,5,5,.15), transparent 38%, rgba(5,5,5,.42)),
+      linear-gradient(180deg, rgba(5,5,5,.08), rgba(5,5,5,.08) 55%, rgba(5,5,5,.72));
+    z-index:3;
+    pointer-events:none;
+  }
+  .about-visual:hover::before{transform:scale(1.025);opacity:1;}
+  .about-visual .bigword{
+    position:absolute;
+    inset:7% auto auto 4%;
+    width:92%;
+    z-index:2;
+    font-size:clamp(76px,9.5vw,155px);
+    color:transparent;
+    -webkit-text-stroke:1.25px rgba(243,241,237,.75);
+    text-shadow:0 0 22px rgba(0,0,0,.28);
+    line-height:.80;
+    text-align:left;
+    letter-spacing:-.025em;
+    pointer-events:none;
+  }
+  .about-visual .cross{z-index:4;opacity:.45;}
+  .about-signature{
+    position:absolute;
+    z-index:8;
+    left:4%;
+    bottom:28px;
+    font-family:'Allura', 'Brush Script MT', cursive;
+    font-size:48px;
+    color:rgba(243,241,237,.9);
+    transform:rotate(-5deg);
+    text-shadow:0 3px 18px rgba(0,0,0,.55);
+  }
+  .about-signature::after{
+    content:"";
+    display:block;
+    width:180px;
+    height:2px;
+    margin:2px 0 0 10px;
+    background:var(--crimson-bright);
+    transform:rotate(-3deg);
+    transform-origin:left;
+  }
+  .about-builder{
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--gray);
+    margin-bottom:14px;
+  }
+  .about-builder strong{display:block;color:var(--crimson-bright);font-size:15px;letter-spacing:.18em;margin-top:6px;}
+  .about-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;border-top:1px solid var(--line);}
+  .about-stat{padding:18px 12px 0 0;border-right:1px solid var(--line);}
+  .about-stat:last-child{border-right:0;padding-left:18px;}
+  .about-stat:nth-child(2){padding-left:18px;}
+  .about-stat .num{font-family:'Anton',sans-serif;font-size:34px;color:var(--crimson-bright);line-height:1;}
+  .about-stat .txt{font-size:11px;color:var(--gray);margin-top:5px;letter-spacing:.04em;}
+  .about-connect{display:inline-flex;align-items:center;gap:22px;margin-top:30px;border:1px solid var(--crimson-bright);border-radius:999px;padding:13px 22px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;transition:.35s var(--ease);}
+  .about-connect:hover{background:var(--crimson-bright);box-shadow:0 0 28px rgba(184,35,44,.25);}
+
+  /* Feature cards / case studies */
+  .project-card-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .mini-btn{
+    border:1px solid var(--line-bright);background:transparent;color:var(--off-white);
+    padding:9px 13px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;
+    transition:.3s var(--ease);
+  }
+  .mini-btn:hover{border-color:var(--crimson-bright);background:rgba(184,35,44,.12);}
+
+  .case-modal,.ai-overlay,.dev-overlay{
+    position:fixed;inset:0;z-index:1400;display:none;
+    align-items:center;justify-content:center;padding:18px;
+    background:rgba(0,0,0,.86);backdrop-filter:blur(12px);
+  }
+  .case-modal.open,.ai-overlay.open,.dev-overlay.open{display:flex;}
+  .case-panel{
+    width:min(1000px,96vw);max-height:90vh;overflow:auto;background:#090909;
+    border:1px solid var(--line-bright);box-shadow:0 30px 100px rgba(0,0,0,.72);
+  }
+  .case-head,.ai-head,.dev-head{
+    display:flex;align-items:center;justify-content:space-between;padding:18px 20px;
+    border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(9,9,9,.96);z-index:2;
+  }
+  .case-body{padding:30px;}
+  .case-kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson-bright);margin-bottom:12px;}
+  .case-title{font-family:'Anton',sans-serif;font-size:clamp(34px,6vw,72px);line-height:.92;margin-bottom:20px;}
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:25px;}
+  .case-box{background:#0b0b0b;padding:22px;}
+  .case-box h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson-bright);margin-bottom:10px;}
+  .case-box p,.case-box li{font-size:13px;line-height:1.7;color:var(--gray);}
+  .case-box ul{padding-left:18px;}
+  .close-x{width:34px;height:34px;background:transparent;border:1px solid var(--line-bright);color:var(--off-white);cursor:pointer;font-size:18px;}
+  .close-x:hover{background:var(--crimson-bright);border-color:var(--crimson-bright);}
+
+
+  /* AI assistant */
+  .ai-launcher{
+    position:fixed;right:24px;bottom:24px;z-index:1300;
+    display:flex;align-items:center;gap:9px;border:1px solid var(--crimson-bright);
+    background:rgba(5,5,5,.92);color:var(--off-white);padding:12px 16px;
+    border-radius:999px;cursor:pointer;box-shadow:0 0 28px rgba(184,35,44,.18);
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;backdrop-filter:blur(10px);
+  }
+  .ai-launcher .pulse{width:7px;height:7px;border-radius:50%;background:#ff4d55;box-shadow:0 0 12px #ff4d55;animation:aiPulse 1.7s infinite;}
+  @keyframes aiPulse{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.2)}}
+  .ai-panel{width:min(470px,94vw);height:min(720px,86vh);background:#070707;border:1px solid var(--line-bright);display:flex;flex-direction:column;box-shadow:0 30px 100px rgba(0,0,0,.8);}
+  .ai-head .status{font-size:9px;letter-spacing:.16em;color:#8dff9b;margin-top:4px;}
+  .ai-messages{flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
+  .ai-msg{max-width:88%;padding:12px 14px;font-size:13px;line-height:1.6;border:1px solid var(--line);}
+  .ai-msg.bot{align-self:flex-start;background:#0d0d0d;}
+  .ai-msg.user{align-self:flex-end;background:rgba(184,35,44,.14);border-color:rgba(184,35,44,.35);}
+  .ai-msg small{display:block;color:var(--gray-dim);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;}
+  .ai-quick{display:flex;gap:7px;flex-wrap:wrap;padding:0 18px 12px;}
+  .ai-quick button{border:1px solid var(--line);background:transparent;color:var(--gray);padding:7px 9px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+  .ai-quick button:hover{border-color:var(--crimson-bright);color:var(--off-white);}
+  .ai-input-row{display:flex;border-top:1px solid var(--line);}
+  .ai-input{flex:1;background:#050505;border:0;color:var(--off-white);padding:15px;outline:none;font:13px Inter;}
+  .ai-send{width:60px;border:0;background:var(--crimson-bright);color:#fff;cursor:pointer;font-size:18px;}
+  .recruiter-toggle{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);cursor:pointer;}
+  .recruiter-toggle input{accent-color:var(--crimson-bright);}
+
+  /* Dev mode */
+  .dev-panel{width:min(920px,95vw);max-height:88vh;overflow:auto;background:#020202;border:1px solid rgba(184,35,44,.55);box-shadow:0 0 80px rgba(184,35,44,.12);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;}
+  .dev-head{background:#050505;font-family:Inter;}
+  .dev-title{font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+  .dev-body{padding:24px;}
+  .dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#171717;}
+  .dev-box{background:#030303;padding:22px;}
+  .dev-box h4{color:var(--crimson-bright);font-size:11px;letter-spacing:.16em;margin-bottom:14px;}
+  .dev-lines{font-size:12px;line-height:1.9;color:#bfbfbf;}
+  .dev-lines .ok{color:#8dff9b;}
+  .dev-console{margin-top:18px;border:1px solid #202020;background:#010101;padding:18px;min-height:180px;}
+  .dev-command-row{display:flex;gap:8px;margin-top:12px;}
+  .dev-input{flex:1;background:#050505;border:1px solid #262626;color:#f1f1f1;padding:11px;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;}
+  .dev-cmd{background:var(--crimson-bright);border:0;color:#fff;padding:0 16px;cursor:pointer;}
+  .dev-output{white-space:pre-wrap;color:#c9c9c9;font-size:12px;line-height:1.7;min-height:120px;}
+  .dev-trigger{
+    position:fixed;left:22px;bottom:22px;z-index:1200;border:1px solid var(--line);
+    background:rgba(5,5,5,.78);color:var(--gray);padding:9px 11px;font:9px ui-monospace,SFMono-Regular,Consolas,monospace;
+    cursor:pointer;opacity:.65;transition:.3s;
+  }
+  .dev-trigger:hover{opacity:1;border-color:var(--crimson-bright);color:var(--off-white);}
+
+  /* Recruiter mode */
+  .recruiter-box{margin-top:20px;border:1px solid rgba(184,35,44,.32);padding:16px;background:rgba(184,35,44,.06);}
+  .recruiter-box select{background:#050505;color:var(--off-white);border:1px solid var(--line-bright);padding:9px;font:11px Inter;margin-left:8px;}
+  .recruiter-result{margin-top:14px;color:var(--gray);font-size:12px;line-height:1.7;}
+
+  @media(max-width:860px){
+    .about-visual{min-height:500px;}
+    .about-visual .bigword{font-size:clamp(70px,17vw,125px);}
+    .play-grid,.case-grid,.dev-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){
+    .about-stat-row{grid-template-columns:1fr 1fr 1fr;}
+    .about-stat .num{font-size:26px;}
+    .about-signature{font-size:40px;}
+    .ai-launcher{right:14px;bottom:14px;}
+    .dev-trigger{left:12px;bottom:14px;}
+    .case-body{padding:20px;}
+    .play-card{padding:22px;}
+  }
+
+
+  /* =========================================================
+     AJAY 2.1 VISUAL REVISION
+     ========================================================= */
+  /* Hero: continuously scrolling name behind the portrait */
+  .hero-bg-type{
+    position:absolute;
+    inset:0;
+    transform:none !important;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:3vh;
+    overflow:hidden;
+    width:100%;
+    font-size:inherit;
+    color:transparent;
+    -webkit-text-stroke:0;
+    background:none;
+    z-index:0;
+    pointer-events:none;
+  }
+  .hero-marquee-track{
+    display:flex;
+    width:max-content;
+    will-change:transform;
+    animation:heroMarquee 24s linear infinite;
+  }
+  .hero-marquee-track-reverse{animation-duration:30s;animation-direction:reverse;opacity:.65;}
+  .hero-marquee-track span{
+    flex:0 0 auto;
+    margin-right:7vw;
+    font-family:'Anton',sans-serif;
+    font-size:clamp(100px,16vw,260px);
+    line-height:.72;
+    letter-spacing:-.045em;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(184,35,44,.38);
+    text-shadow:0 0 28px rgba(184,35,44,.06);
+    white-space:nowrap;
+  }
+  @keyframes heroMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+  .hero-portrait::before{display:none !important;}
+  .hero-portrait::after{background:linear-gradient(180deg,rgba(143,16,24,.02),rgba(5,5,5,.12) 92%);}
+  .hero-slideshow .hero-slide{filter:grayscale(1) contrast(1.08) brightness(.98);}
+  .hero-mid{z-index:2;}
+  @media (max-width:760px){
+    .hero-marquee-track span{font-size:clamp(82px,25vw,150px);}
+  }
+
+  /* About: no rectangular frame, much larger cutout, watermark lower */
+  .about-visual{
+    min-height:700px;
+    border:none !important;
+    outline:none !important;
+    box-shadow:none !important;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 45% 55%,rgba(184,35,44,.25),transparent 38%),
+      radial-gradient(circle at 52% 82%,rgba(184,35,44,.10),transparent 48%),
+      #050505;
+  }
+  .about-visual::before{display:none !important;}
+  .about-visual::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:4;
+    pointer-events:none;
+    background:linear-gradient(180deg,rgba(5,5,5,0) 0%,rgba(5,5,5,0) 52%,rgba(5,5,5,.62) 100%);
+  }
+  .about-portrait-img{
+    position:absolute;
+    z-index:3;
+    left:50%;
+    bottom:-2%;
+    transform:translateX(-50%);
+    width:min(92%,760px);
+    max-width:none;
+    height:auto;
+    object-fit:contain;
+    object-position:center bottom;
+    border:none !important;
+    outline:none !important;
+    box-shadow:none !important;
+    background:transparent !important;
+    filter:contrast(1.05) brightness(.98);
+    transition:transform .8s var(--ease),filter .6s var(--ease);
+  }
+  .about-visual:hover .about-portrait-img{transform:translateX(-50%) scale(1.025);filter:contrast(1.07) brightness(1.01);}
+  .about-watermark{
+    position:absolute;
+    z-index:2;
+    left:3%;
+    bottom:7%;
+    font-family:'Anton',sans-serif;
+    font-size:clamp(92px,10.5vw,175px);
+    line-height:.78;
+    letter-spacing:-.035em;
+    color:transparent;
+    -webkit-text-stroke:1.25px rgba(243,241,237,.72);
+    text-align:left;
+    pointer-events:none;
+    user-select:none;
+  }
+  .about-glow{position:absolute;z-index:1;left:28%;bottom:5%;width:45%;height:65%;border-radius:50%;background:rgba(184,35,44,.14);filter:blur(55px);pointer-events:none;}
+  .about-signature{display:none !important;}
+  .about-visual .cross{display:none !important;}
+  @media (max-width:900px){
+    .about-visual{min-height:620px;}
+    .about-portrait-img{width:96%;}
+  }
+  @media (max-width:640px){
+    .about-visual{min-height:560px;}
+    .about-watermark{font-size:clamp(72px,20vw,125px);left:4%;bottom:12%;}
+    .about-portrait-img{width:105%;bottom:0;}
+  }
+
+  /* Work: premium project showcase cards */
+  .project-v21{
+    grid-template-columns:48px minmax(300px,1.05fr) minmax(280px,.95fr) auto;
+    gap:24px;
+    padding:46px 0;
+    align-items:center;
+  }
+  .project-v21 .project-media{
+    grid-column:2;
+    grid-row:1;
+    min-height:245px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(243,241,237,.13);
+    background:
+      radial-gradient(circle at 72% 35%,rgba(184,35,44,.42),transparent 28%),
+      linear-gradient(135deg,#12090a,#050505 55%,#16070a);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:24px;
+    isolation:isolate;
+  }
+  .project-v21 .project-media::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(184,35,44,.22);
+    transform:translate(9px,-7px);
+    z-index:-1;
+  }
+  .project-v21:nth-of-type(2) .project-media{background:radial-gradient(circle at 30% 35%,rgba(184,35,44,.4),transparent 26%),linear-gradient(135deg,#090d12,#050505 55%,#16070a);}
+  .project-v21:nth-of-type(3) .project-media{background:radial-gradient(circle at 70% 45%,rgba(184,35,44,.32),transparent 26%),linear-gradient(135deg,#0b0b0b,#050505 55%,#18090b);}
+  .project-v21:nth-of-type(4) .project-media{background:radial-gradient(circle at 32% 32%,rgba(184,35,44,.38),transparent 28%),linear-gradient(135deg,#10090a,#050505 55%,#090909);}
+  .project-media-label{font-size:9px;letter-spacing:.22em;color:var(--crimson-bright);text-transform:uppercase;margin-bottom:auto;}
+  .project-media-title{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,60px);line-height:.85;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(243,241,237,.68);}
+  .project-media-code{font-size:9px;letter-spacing:.16em;color:var(--gray);margin-top:14px;text-transform:uppercase;}
+  .project-v21 > div:nth-child(3){grid-column:3;grid-row:1;}
+  .project-v21 .project-meta{grid-column:4;grid-row:1;}
+  .project-v21:hover{padding-left:0;}
+  .project-v21:hover .project-media{border-color:rgba(184,35,44,.55);box-shadow:0 20px 60px rgba(0,0,0,.32),0 0 28px rgba(184,35,44,.08);}
+  .project-v21 .project-title{font-size:clamp(28px,3.6vw,52px);}
+  .project-v21 .project-desc{max-width:560px;}
+  @media (max-width:980px){
+    .project-v21{grid-template-columns:42px 1fr;gap:20px;}
+    .project-v21 .project-media{grid-column:2;grid-row:1;min-height:250px;}
+    .project-v21 > div:nth-child(3){grid-column:2;grid-row:2;}
+    .project-v21 .project-meta{grid-column:2;grid-row:3;text-align:left;}
+  }
+  @media (max-width:760px){
+    .project-v21{grid-template-columns:1fr;gap:16px;padding:38px 0;}
+    .project-v21 .project-index{grid-column:1;grid-row:1;}
+    .project-v21 .project-media{grid-column:1;grid-row:2;min-height:220px;}
+    .project-v21 > div:nth-child(3){grid-column:1;grid-row:3;}
+    .project-v21 .project-meta{grid-column:1;grid-row:4;}
+  }
+
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-logo">AJAY CHANDRASHEKHAR ALLE </div>
+  <ul class="nav-links">
+    <li><a href="#home">01 Home</a></li>
+    <li><a href="#journey">02 Journey</a></li>
+    <li><a href="#about">03 About</a></li>
+    <li><a href="#skills">04 Skills</a></li>
+    <li><a href="#work">05 Work</a></li>
+    <li><a href="#experience">06 Experience</a></li>
+    <li><a href="#contact">07 Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#journey">Journey</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#work">Work</a>
+  <a href="#experience">Experience</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg-type" id="heroBgType" aria-hidden="true">
+    <div class="hero-marquee-track">
+      <span>ALLE AJAY CHANDRASHEKHAR</span><span>ALLE AJAY CHANDRASHEKHAR</span><span>ALLE AJAY CHANDRASHEKHAR</span><span>ALLE AJAY</span>
+    </div>
+    <div class="hero-marquee-track hero-marquee-track-reverse">
+      <span>ALLE AJAY</span><span>ALLE AJAY</span><span>ALLE AJAY</span><span>ALLE AJAY</span>
+    </div>
+  </div>
+
+  <div class="hero-top" data-reveal="1">
+    <div>
+      <div class="label">ALLE AJAY</div>
+      <div class="label" style="color:var(--off-white); margin-top:4px;">Electronics × Software</div>
+    </div>
+    <div class="hero-top-r">
+    </div>
+  </div>
+
+  <div class="hero-mid">
+    <div class="hero-portrait hero-slideshow" data-reveal="2" aria-label="Alle Ajay portrait slideshow">
+      <img src="ajay-portrait-1.png" alt="Alle Ajay portrait" class="hero-slide active">
+      <img src="ajay-portrait-4.png" alt="Alle Ajay portrait" class="hero-slide">
+      <img src="ajay-portrait-3.png" alt="Alle Ajay portrait" class="hero-slide">
+      <img src="ajay-portrait-2.png" alt="Alle Ajay portrait" class="hero-slide">
+    </div>
+  </div>
+
+  
+
+  <div class="hero-bottom">
+    <div data-reveal="3">
+      <div class="hero-intro-line">Hello, I'm</div>
+      <h1 class="hero-name display">AJAY ALLE</h1>
+      <div class="hero-roles">
+        <span>Software Developer</span><span>Python Builder</span><span>ECE Engineer</span>
+      </div>
+      <div class="hero-tag">Software × AI/ML × Electronics</div>
+      <p class="hero-desc">I build practical software and intelligent systems by combining Programming, electronics, embedded technology and real-world problem solving.</p>
+    </div>
+    <div class="hero-meta" data-reveal="4">
+      <div class="hero-scroll">Scroll to Explore <span class="arrow">↓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="journey" id="journey">
+  <div class="journey-head sec-head">
+    <div>
+      <div class="sec-num label">02 <span class="dot">·</span> The Journey</div>
+      <h2 class="sec-title display" data-reveal="1">THE<br>JOURNEY</h2>
+    </div>
+    <p style="max-width:340px; color:var(--gray); font-size:14px; line-height:1.7;" data-reveal="2">
+      From electrical foundations to software, embedded systems and data-driven projects — every step has been about learning by building.
+    </p>
+  </div>
+
+  <div class="road-wrap">
+    <div class="road" aria-label="Ajay's career and learning journey">
+      <div class="road-progress" id="roadProgress"></div>
+      <div class="road-centerline"></div>
+
+      <article class="road-stop left" data-road-stop>
+        <div class="road-marker"><span>⚡</span></div>
+        <div class="road-card">
+          <div class="stage-label">2020 — 2023 · Foundation</div>
+          <h3 class="road-title display">ELECTRICAL</h3>
+          <p>Started with a Diploma in Electrical Engineering and built a strong foundation in circuits, electronics and practical engineering.</p>
+          
+        </div>
+      </article>
+
+      <article class="road-stop right" data-road-stop>
+        <div class="road-marker"><span>🎓</span></div>
+        <div class="road-card">
+          <div class="stage-label">2024 — 2027 · Engineering</div>
+          <h3 class="road-title display">ECE</h3>
+          <p>Moved into Electronics &amp; Communication Engineering, expanding from hardware fundamentals into communication, embedded systems and digital design.</p>
+          <div class="stage-tags"><span>ECE,</span><span>Embedded Systems,</span><span>Digital Electronics</span></div>
+        </div>
+      </article>
+
+      <article class="road-stop left" data-road-stop>
+        <div class="road-marker"><span>💻</span></div>
+        <div class="road-card">
+          <div class="stage-label">2024 — 2025 · Software</div>
+          <h3 class="road-title display">PYTHON</h3>
+          <p>Started turning engineering ideas into software through Python, problem solving and practical programming projects.</p>
+          <div class="stage-tags"><span>Python,</span><span>Problem Solving,</span><span>Programming</span></div>
+        </div>
+      </article>
+
+      <article class="road-stop right" data-road-stop>
+        <div class="road-marker"><span>🔧</span></div>
+        <div class="road-card">
+          <div class="stage-label">2025 · Real-World Build</div>
+          <h3 class="road-title display">BUILD</h3>
+          <p>Built a Wi-Fi attendance system using ESP32, MAC-address detection, Google Apps Script and Google Sheets to automate classroom records.</p>
+          <div class="stage-tags"><span>ESP32,</span><span>IoT,</span><span>Automation</span></div>
+        </div>
+      </article>
+
+      <article class="road-stop left" data-road-stop>
+        <div class="road-marker"><span>🤖</span></div>
+        <div class="road-card">
+          <div class="stage-label">2026 · Computer Vision</div>
+          <h3 class="road-title display">INTELLIGENCE</h3>
+          <p>Worked on gesture-controlled smart home automation using Python, OpenCV and MediaPipe on Raspberry Pi, connecting vision with hardware control.</p>
+          <div class="stage-tags"><span>OpenCV,</span><span>MediaPipe,</span><span>Raspberry Pi</span></div>
+        </div>
+      </article>
+
+      <article class="road-stop right" data-road-stop>
+        <div class="road-marker"><span>📊</span></div>
+        <div class="road-card">
+          <div class="stage-label">2026 · Industry Experience</div>
+          <h3 class="road-title display">DATA</h3>
+          <p>Applied Python, Pandas and visualization tools during a Data Science internship, working through real-world data cleaning and analysis workflows.</p>
+          <div class="stage-tags"><span>Data Science,</span><span>Pandas,</span><span>Visualization</span></div>
+        </div>
+      </article>
+
+      <article class="road-stop left future" data-road-stop>
+        <div class="road-marker"><span>🚀</span></div>
+        <div class="road-card">
+          <div class="stage-label">Next Chapter · Direction</div>
+          <h3 class="road-title display">AI / ML</h3>
+          <p>Building toward software and AI/ML engineering roles by strengthening Python, data, machine learning and problem-solving skills.</p>
+          <div class="stage-tags"><span>Python,</span><span>AI / ML</span><span>,Software Engineering</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="journey-end" data-reveal="1">
+    <div class="display">THE ROAD CONTINUES</div>
+    <p>Learn. Build. Ship. Repeat.</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about section-pad" id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num label">03 <span class="dot">·</span> About</div>
+        <h2 class="sec-title display" data-reveal="1">ABOUT</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-visual" data-reveal="2" aria-label="About Ajay visual">
+        <img class="about-portrait-img" src="ajay-portrait-3.png" alt="Alle Ajay portrait">
+        <div class="about-glow"></div>
+      </div>
+      <div class="about-copy" data-reveal="3">
+        <p class="lede">I turn <em>engineering ideas</em> into practical software, intelligent applications, and real-world systems.</p>
+        <p>My background is in Electronics &amp; Communication Engineering, but my direction is increasingly software-focused. I work with Python, computer vision, embedded systems and data-driven projects, combining hardware knowledge with software to build practical solutions.</p>
+        <p>I believe in learning by building - understand the fundamentals, developing real world projects, solving problems, and continuously improving my skills through hands-on experience.</p>
+        <div class="about-focus">
+          <div>Python &amp; Software Development</div>
+          <div>Hardware + Software Integration</div>
+          <div>Practical Project Building</div>
+          <div>AI & Intelligent Applications</div>
+          <div>Continuous Learning</div>
+        </div>
+        <div class="about-stat-row">
+          <div class="about-stat"><div class="num">04+</div><div class="txt">Featured Projects</div></div>
+          <div class="about-stat"><div class="num">10+</div><div class="txt">Certificates</div></div>
+          <div class="about-stat"><div class="num">∞</div><div class="txt">Learning</div></div>
+        </div>
+        <a class="about-connect" href="#contact">LET'S CONNECT <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="skills section-pad" id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num label">04 <span class="dot">·</span> Expertise</div>
+        <h2 class="sec-title display" data-reveal="1">EXPERTISE</h2>
+      </div>
+      <p style="max-width:300px; color:var(--gray); font-size:13px;" data-reveal="2">However a skill to see how it's actually been used.</p>
+    </div>
+
+    <div class="skill-groups" data-reveal="3">
+      <div class="skill-group">
+        <h3>Software</h3>
+        <ul class="skill-list">
+          <li class="skill-item"><span>Python</span><span class="note">Attendance systems, data pipelines</span></li>
+          <li class="skill-item"><span>Problem Solving</span><span class="note">Core to every build</span></li>
+          <li class="skill-item"><span>Coding</span><span class="note">Applied across projects</span></li>
+          <li class="skill-item"><span>Basic Data Structures</span><span class="note">Foundations for clean logic</span></li>
+          <li class="skill-item"><span>Programming</span><span class="note">C, C++, Python</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Embedded &amp; Electronics</h3>
+        <ul class="skill-list">
+          <li class="skill-item"><span>ESP32</span><span class="note">Wi-Fi attendance system</span></li>
+          <li class="skill-item"><span>Arduino IDE</span><span class="note">Smart home automation</span></li>
+          <li class="skill-item"><span>Embedded Systems</span><span class="note">Sensors to controllers</span></li>
+          <li class="skill-item"><span>Microcontrollers</span><span class="note">Hardware-software bridge</span></li>
+          <li class="skill-item"><span>Electronics</span><span class="note">ECE foundation</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Technology</h3>
+        <ul class="skill-list">
+          <li class="skill-item"><span>Google Apps Script</span><span class="note">Automated attendance logging</span></li>
+          <li class="skill-item"><span>Google Sheets</span><span class="note">Live data recording</span></li>
+          <li class="skill-item"><span>Git / GitHub</span><span class="note">Version control</span></li>
+          <li class="skill-item"><span>Web Technologies</span><span class="note">Building &amp; deploying</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>ECE</h3>
+        <ul class="skill-list">
+          <li class="skill-item"><span>Digital Electronics</span><span class="note">Carry look-ahead adder</span></li>
+          <li class="skill-item"><span>Communication Systems</span><span class="note">Core coursework</span></li>
+          <li class="skill-item"><span>Microcontrollers</span><span class="note">Applied in projects</span></li>
+          <li class="skill-item"><span>Embedded Systems</span><span class="note">Hardware automation</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work section-pad" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num label">05 <span class="dot">·</span> Project Work</div>
+        <h2 class="sec-title display" data-reveal="1">PROJECT<br>WORK</h2>
+      </div>
+    </div>
+
+    <div class="project project-v21" data-reveal="2">
+      <div class="project-index">01</div>
+      <div class="project-media"><div class="project-media-label">PROJECT 01</div><div class="project-media-title">WI-FI<br>ATTENDANCE</div><div class="project-media-code">ESP32 / GOOGLE SHEETS</div></div>
+      <div>
+        <div class="project-title display">WI-FI ATTENDANCE SYSTEM</div>
+        <div class="project-sub">ESP32 × Automation × Google Apps Script</div>
+        <div class="project-desc">A Wi-Fi based attendance system using ESP32 modules to identify student devices through MAC addresses and automatically update attendance records using Google Apps Script and Google Sheets.</div>
+        <div class="project-tech"><span>ESP32</span><span>Arduino IDE</span><span>Google Apps Script</span><span>Google Sheets</span></div>
+        <div class="project-actions"><a href="https://github.com/ajayalle" target="_blank" rel="noopener">View Project</a><a href="https://github.com/ajayalle" target="_blank" rel="noopener">GitHub</a></div>
+        <div class="project-card-actions" style="margin-top:12px;">
+          <button class="mini-btn" type="button" data-case="wifi">Case Study →</button>
+          <button class="mini-btn" type="button" data-ai-project="wifi">Ask AI →</button>
+        </div>
+      </div>
+      <div class="project-meta"><div class="view">View →</div></div>
+    </div>
+
+    <div class="project project-v21" data-reveal="2">
+      <div class="project-index">02</div>
+      <div class="project-media"><div class="project-media-label">PROJECT 02</div><div class="project-media-title">SMART HOME<br>AUTOMATION</div><div class="project-media-code">CV / GESTURE CONTROL</div></div>
+      <div>
+        <div class="project-title display">SMART HOME AUTOMATION</div>
+        <div class="project-sub">Computer Vision × Arduino × Gesture Control</div>
+        <div class="project-desc">A team-built home automation system that runs without internet — gesture control via a Raspberry Pi camera using OpenCV and MediaPipe, with Arduino as the controller and IR remote and manual switch inputs as backup. My role covered the computer vision and gesture recognition component.</div>
+        <div class="project-tech"><span>OpenCV</span><span>MediaPipe</span><span>Raspberry Pi</span><span>Arduino</span></div>
+        <div class="project-actions"><a href="https://github.com/ajayalle" target="_blank" rel="noopener">View Project</a><a href="https://github.com/ajayalle" target="_blank" rel="noopener">GitHub</a></div>
+        <div class="project-card-actions" style="margin-top:12px;">
+          <button class="mini-btn" type="button" data-case="smart-home">Case Study →</button>
+          <button class="mini-btn" type="button" data-ai-project="smart-home">Ask AI →</button>
+        </div>
+      </div>
+      <div class="project-meta"><div class="view">View →</div></div>
+    </div>
+
+    <div class="project project-v21" data-reveal="2">
+      <div class="project-index">03</div>
+      <div class="project-media"><div class="project-media-label">PROJECT 03</div><div class="project-media-title">4-BIT<br>CLA ADDER</div><div class="project-media-code">VERILOG / DIGITAL DESIGN</div></div>
+      <div>
+        <div class="project-title display">4-BIT CARRY LOOK-AHEAD ADDER</div>
+        <div class="project-sub">Digital Design × Verilog</div>
+        <div class="project-desc">A digital logic project implementing a 4-bit Carry Look-Ahead Adder in Verilog, simulated and verified for correctness.</div>
+        <div class="project-tech"><span>Verilog</span><span>Digital Electronics</span><span>EDA Playground</span></div>
+        <div class="project-actions"><a href="https://github.com/ajayalle" target="_blank" rel="noopener">View Project</a></div>
+        <div class="project-card-actions" style="margin-top:12px;">
+          <button class="mini-btn" type="button" data-case="cla">Case Study →</button>
+          <button class="mini-btn" type="button" data-ai-project="cla">Ask AI →</button>
+        </div>
+      </div>
+      <div class="project-meta"><div class="view">View →</div></div>
+    </div>
+
+    <div class="project project-v21" data-reveal="2">
+      <div class="project-index">04</div>
+      <div class="project-media"><div class="project-media-label">PROJECT 04</div><div class="project-media-title">PYTHON<br>BUILDS</div><div class="project-media-code">PRACTICE / PROBLEM SOLVING</div></div>
+      <div>
+        <div class="project-title display">PYTHON PROJECTS</div>
+        <div class="project-sub">Applied Python × Practice Builds</div>
+        <div class="project-desc py-sub">A running collection of smaller Python builds — practical problems, worked end to end.</div>
+        <div class="py-list">
+          <div class="pyi"><b>01</b> Library Book Management</div>
+          <div class="pyi"><b>02</b> Task Scheduler</div>
+          <div class="pyi"><b>03</b> Traffic Simulation</div>
+        </div>
+        <div class="project-actions" style="margin-top:20px;"><a href="https://github.com/ajayalle" target="_blank" rel="noopener">GitHub</a></div>
+        <div class="project-card-actions" style="margin-top:12px;">
+          <button class="mini-btn" type="button" data-case="python">Case Study →</button>
+          <button class="mini-btn" type="button" data-ai-project="python">Ask AI →</button>
+        </div>
+      </div>
+      <div class="project-meta"><div class="view">View →</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="experience section-pad" id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num label">06 <span class="dot">·</span> Experience</div>
+        <h2 class="sec-title display" data-reveal="1">EXPERIENCE</h2>
+      </div>
+    </div>
+
+    <div class="timeline" data-reveal="2">
+      <div class="tl-item">
+        <div class="tl-role">Data Science Intern</div>
+        <div class="tl-org">Thiranex</div>
+        <div class="tl-dur">14Aug-13Sept 2026</div>
+        <ul class="tl-list">
+          <li>Assigned a Data Cleaning &amp; Visualization Project: process a raw dataset end to end — handling missing values, outliers and duplicates.</li>
+          <li>Selected the Superstore Sales dataset, injecting synthetic missing values to simulate real-world raw data.</li>
+          <li>Built a full cleaning pipeline — removed 15 duplicate records and flagged outliers using the IQR method.</li>
+          <li>Produced a 6-panel analytical dashboard and a correlation heatmap to surface key findings.</li>
+        </ul>
+        <div class="tl-tech"><span>Python</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="education section-pad" id="education">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:20px;">
+      <div>
+        <div class="sec-num label">07 <span class="dot">·</span> Education</div>
+        <h2 class="sec-title display" data-reveal="1" style="font-size:clamp(30px,4.5vw,52px);">EDUCATION</h2>
+      </div>
+    </div>
+    <div data-reveal="2">
+      <div class="edu-row">
+        <div class="edu-year">2024 — 2027</div>
+        <div>
+          <div class="edu-deg">Bachelor of Engineering — Electronics &amp; Communication Engineering</div>
+          <div class="edu-school">Dr. S. &amp; S. S. Ghandhy Government Engineering College</div>
+          <div class="edu-cgpa">CGPA 7.52</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">2020 — 2023</div>
+        <div>
+          <div class="edu-deg">Diploma — Electrical Engineering</div>
+          <div class="edu-school">Dr. S. &amp; S. S. Ghandhy College of Engineering &amp; Technology</div>
+          <div class="edu-cgpa">CGPA 6.90 / 10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section class="certs section-pad" id="certifications">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num label">08 <span class="dot">·</span> Certifications</div>
+        <h2 class="sec-title display" data-reveal="1" style="font-size:clamp(30px,4.5vw,52px);">CERTIFICATIONS</h2>
+      </div>
+    </div>
+    <div class="cert-grid" id="certGrid" data-reveal="2"></div>
+  </div>
+</section>
+
+
+    <!--
+      ADD A CERTIFICATE:
+      Add one object to the certificates array in the JavaScript below.
+
+      Example:
+      {
+        category: "Python",
+        name: "My New Certificate",
+        org: "Organization Name",
+        year: "2026",
+        file: "certificates/my-new-certificate.pdf"
+      }
+
+      Put the PDF/image inside the certificates/ folder.
+    -->
+<!-- ============ HIGHLIGHTS ============ -->
+<section class="highlights section-pad" id="highlights">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num label">09 <span class="dot">·</span> Highlights</div>
+        <h2 class="sec-title display" data-reveal="1" style="font-size:clamp(30px,4.5vw,52px);">HIGHLIGHTS</h2>
+      </div>
+    </div>
+    <div class="hl-grid" data-reveal="2">
+      <div class="hl-card"><div class="hl-num">01</div><div class="hl-title">Real-World<br>Projects</div></div>
+      <div class="hl-card"><div class="hl-num">02</div><div class="hl-title">Python +<br>Hardware</div></div>
+      <div class="hl-card"><div class="hl-num">03</div><div class="hl-title">Industry<br>Experience</div></div>
+      <div class="hl-card"><div class="hl-num">04</div><div class="hl-title">Learning Through<br>Building</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUME CTA ============ -->
+<section class="resume-cta">
+  <div class="bg-type">MORE THAN<br>A RESUME.</div>
+  <div class="resume-cta-inner wrap" data-reveal="1">
+    <h2 class="display">EXPLORE MY WORK</h2>
+    <p>Explore the work, skills and experiences behind my journey.</p>
+    <div class="cta-buttons">
+      <a href="Alle Ajay Resume.pdf" class="btn primary">Download Resume</a>
+      <a href="#work" class="btn ghost">View Work</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ CASE STUDY MODAL ============ -->
+<div class="case-modal" id="caseModal" aria-hidden="true">
+  <div class="case-panel" role="dialog" aria-modal="true" aria-labelledby="caseTitle">
+    <div class="case-head">
+      <div class="label" id="caseKicker">CASE STUDY</div>
+      <button class="close-x" id="caseClose" aria-label="Close case study">×</button>
+    </div>
+    <div class="case-body">
+      <div class="case-kicker" id="caseSub">PROJECT</div>
+      <h2 class="case-title" id="caseTitle">PROJECT</h2>
+      <div class="case-grid" id="caseGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AJAY AI ============ -->
+<button class="ai-launcher" id="aiLauncher" type="button" aria-label="Open Ajay AI">
+  <span class="pulse"></span> ✦ AJAY AI
+</button>
+
+<div class="ai-overlay" id="aiOverlay" aria-hidden="true">
+  <div class="ai-panel" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+    <div class="ai-head">
+      <div>
+        <div class="label" id="aiTitle">✦ AJAY AI</div>
+        <div class="status">● PORTFOLIO AGENT ONLINE</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <label class="recruiter-toggle"><input type="checkbox" id="recruiterMode"> Recruiter Mode</label>
+        <button class="close-x" id="aiClose" aria-label="Close AI assistant">×</button>
+      </div>
+    </div>
+    <div class="ai-messages" id="aiMessages"></div>
+    <div class="ai-quick">
+      <button data-ai-quick="about">About Ajay</button>
+      <button data-ai-quick="projects">Projects</button>
+      <button data-ai-quick="skills">Skills</button>
+      <button data-ai-quick="resume">Resume</button>
+      <button data-ai-quick="contact">Contact</button>
+    </div>
+    <div class="ai-input-row">
+      <input class="ai-input" id="aiInput" autocomplete="off" placeholder="Ask me about Ajay...">
+      <button class="ai-send" id="aiSend" type="button" aria-label="Send">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DEV MODE ============ -->
+<button class="dev-trigger" id="devTrigger" type="button">CTRL + SHIFT + A · DEV</button>
+<div class="dev-overlay" id="devOverlay" aria-hidden="true">
+  <div class="dev-panel" role="dialog" aria-modal="true" aria-labelledby="devTitle">
+    <div class="dev-head">
+      <div>
+        <div class="dev-title" id="devTitle">AJAY.DEV MODE</div>
+        <div style="font-size:9px;color:#777;margin-top:4px;">interactive developer console</div>
+      </div>
+      <button class="close-x" id="devClose" aria-label="Close developer mode">×</button>
+    </div>
+    <div class="dev-body">
+      <div class="dev-grid">
+        <div class="dev-box">
+          <h4>SYSTEM STATUS</h4>
+          <div class="dev-lines">
+            Portfolio      <span class="ok">ONLINE</span><br>
+            UI Engine      <span class="ok">ONLINE</span><br>
+            AI Agent       <span class="ok">ONLINE</span><br>
+            Project Data   <span class="ok">LOADED</span><br>
+            Certificates   <span class="ok">LOADED</span><br>
+          
+          </div>
+        </div>
+        <div class="dev-box">
+          <h4>CURRENT STACK</h4>
+          <div class="dev-lines">
+            Python · JavaScript<br>
+            HTML · CSS · Git<br>
+            ESP32 · Arduino<br>
+            OpenCV · MediaPipe<br>
+            Google Apps Script<br>
+            Embedded Systems · IoT
+          </div>
+        </div>
+      </div>
+      <div class="dev-console">
+        <div class="dev-output" id="devOutput"></div>
+        <div class="dev-command-row">
+          <input class="dev-input" id="devInput" autocomplete="off" placeholder="type: help">
+          <button class="dev-cmd" id="devRun" type="button">RUN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-top" data-reveal="1">
+      <h2 class="display" style="font-size:clamp(40px,7vw,88px);">LET'S BUILD<br>SOMETHING.</h2>
+      <p>Have an idea, project or opportunity? Let's connect.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-links" data-reveal="2">
+        <a href="mailto:ajayalle14@gmail.com"><span><span class="cl-label">Email</span><br>ajayalle14@gmail.com</span><span class="arrow-r">→</span></a>
+        <a href="https://linkedin.com/in/alle-ajay" target="_blank" rel="noopener"><span><span class="cl-label">LinkedIn</span><br>alle-ajay</span><span class="arrow-r">→</span></a>
+        <a href="https://github.com/ajayalle" target="_blank" rel="noopener"><span><span class="cl-label">GitHub</span><br>ajayalle</span><span class="arrow-r">→</span></a>
+      </div>
+
+      <form class="contact-form" data-reveal="3" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message Sent'; this.querySelector('button').style.background='var(--crimson-bright)'; this.querySelector('button').style.borderColor='var(--crimson-bright)';">
+        <div class="field"><label for="cname">Name</label><input id="cname" type="text" required></div>
+        <div class="field"><label for="cemail">Email</label><input id="cemail" type="email" required></div>
+        <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" required></textarea></div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ CERTIFICATE VIEWER ============ -->
+<div class="cert-modal" id="certModal" aria-hidden="true">
+  <div class="cert-modal-panel" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+    <div class="cert-modal-head">
+      <div class="cert-modal-title" id="certModalTitle">Certificate</div>
+      <button class="cert-modal-close" id="certModalClose" aria-label="Close certificate">×</button>
+    </div>
+    <div class="cert-modal-content" id="certModalContent"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">ALLE AJAY CHANDRASHEKHAR</div>
+      <div class="foot-tag">Electronics × Software × Technology</div>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/ajayalle" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/alle-ajay" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="ajayalle14@gmail.com" target="_blank" rel="noopener">Email</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Alle Ajay</span>
+    <a href="#home" class="back-top">Back to Top ↑</a>
+  </div>
+</footer>
+
+<script>
+  /*
+    OPTIONAL LIVE AI BACKEND
+    For a real LLM agent, define:
+      window.AJAY_AI_ENDPOINT = "/api/ai";
+    The browser sends { message, recruiterMode } to that endpoint.
+    Keep API keys on your server — never put provider keys in this HTML.
+  */
+
+  // Nav scroll state
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, {passive:true});
+
+  // Mobile menu
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.14});
+  revealEls.forEach(el => io.observe(el));
+
+  // Hero parallax (subtle)
+  const heroBgType = document.getElementById('heroBgType');
+  const heroPortrait = document.querySelector('.hero-slideshow');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight * 1.2) {
+      heroBgType.style.opacity = String(Math.max(.45, 1 - y*0.0007));
+      heroPortrait.style.transform = `translateY(${y*0.06}px) scale(${1 + Math.min(y*0.00015,0.03)})`;
+    }
+  }, {passive:true});
+
+
+
+  // Animated Journey Road
+  // Works consistently on desktop and mobile.
+  const road = document.querySelector('.road');
+  const roadProgress = document.getElementById('roadProgress');
+  const roadStops = Array.from(document.querySelectorAll('[data-road-stop]'));
+
+  function updateJourneyRoad() {
+    if (!road || !roadProgress || !roadStops.length) return;
+
+    const rect = road.getBoundingClientRect();
+    const viewportCenter = window.innerHeight * 0.52;
+
+    // Progress follows the user's scroll through the whole road.
+    const startY = rect.top + window.scrollY;
+    const usableHeight = Math.max(rect.height, 1);
+    const currentY = window.scrollY + viewportCenter;
+
+    let progress = ((currentY - startY) / usableHeight) * 100;
+    progress = Math.max(0, Math.min(100, progress));
+    roadProgress.style.height = `${progress}%`;
+
+    // Activate the milestone nearest the visual center of the screen.
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    roadStops.forEach((stop, index) => {
+      const r = stop.getBoundingClientRect();
+      const markerCenter = r.top + Math.min(60, r.height * .18);
+      const distance = Math.abs(markerCenter - viewportCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    roadStops.forEach((stop, index) => {
+      stop.classList.toggle('active', index === closestIndex);
+    });
+  }
+
+  let journeyTicking = false;
+  function requestJourneyUpdate() {
+    if (journeyTicking) return;
+    journeyTicking = true;
+    requestAnimationFrame(() => {
+      updateJourneyRoad();
+      journeyTicking = false;
+    });
+  }
+
+  window.addEventListener('scroll', requestJourneyUpdate, {passive:true});
+  window.addEventListener('resize', requestJourneyUpdate);
+  window.addEventListener('load', updateJourneyRoad);
+  updateJourneyRoad();
+
+  // Hero portrait slideshow
+  // One PNG is visible at a time. It changes every 3.5 seconds with a cinematic fade.
+  const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+  let heroSlideIndex = 0;
+  const HERO_SLIDE_DURATION = 3500;
+  const heroSlideshow = document.querySelector('.hero-slideshow');
+
+  /*
+    The uploaded PNGs are:
+      1–3: portrait orientation
+      4: landscape orientation
+
+    The wrapper is resized from each image's NATURAL aspect ratio so no image
+    is stretched or cropped into a fixed box.
+  */
+  function fitHeroToImage(img, animate = true) {
+    if (!heroSlideshow || !img) return;
+
+    const maxWidth = Math.min(window.innerWidth * 0.72, 520);
+    const maxHeight = Math.min(window.innerHeight * 0.58, 590);
+
+    const ratio = img.naturalWidth && img.naturalHeight
+      ? img.naturalWidth / img.naturalHeight
+      : 3 / 4;
+
+    let width = maxWidth;
+    let height = width / ratio;
+
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * ratio;
+    }
+
+    if (window.innerWidth <= 760) {
+      const mobileMaxWidth = Math.min(window.innerWidth * 0.78, 440);
+      const mobileMaxHeight = Math.min(window.innerHeight * 0.48, 500);
+
+      width = mobileMaxWidth;
+      height = width / ratio;
+
+      if (height > mobileMaxHeight) {
+        height = mobileMaxHeight;
+        width = height * ratio;
+      }
+    }
+
+    heroSlideshow.style.width = `${Math.round(width)}px`;
+    heroSlideshow.style.height = `${Math.round(height)}px`;
+  }
+
+  function showHeroSlide(index) {
+    if (!heroSlides.length) return;
+
+    const current = heroSlides[heroSlideIndex];
+    if (current) current.classList.remove('active');
+
+    heroSlideIndex = (index + heroSlides.length) % heroSlides.length;
+    const next = heroSlides[heroSlideIndex];
+
+    const activate = () => {
+      fitHeroToImage(next);
+      requestAnimationFrame(() => next.classList.add('active'));
+    };
+
+    if (next.complete && next.naturalWidth) {
+      activate();
+    } else {
+      next.addEventListener('load', activate, {once:true});
+    }
+  }
+
+  function initHeroSlideshow() {
+    if (!heroSlides.length) return;
+
+    const first = heroSlides[0];
+
+    const start = () => {
+      fitHeroToImage(first, false);
+      first.classList.add('active');
+
+      setInterval(() => {
+        showHeroSlide(heroSlideIndex + 1);
+      }, HERO_SLIDE_DURATION);
+    };
+
+    if (first.complete && first.naturalWidth) {
+      start();
+    } else {
+      first.addEventListener('load', start, {once:true});
+    }
+  }
+
+  initHeroSlideshow();
+
+  window.addEventListener('resize', () => {
+    const active = heroSlides[heroSlideIndex];
+    if (active) fitHeroToImage(active);
+  });
+
+  // ===================== CERTIFICATES =====================
+  // Add certificates here. Put each certificate file in /certificates/.
+  // file can be a .pdf, .png, .jpg, .jpeg or .webp.
+  const certificates = [
+    {
+      category: "AI & Green Skills",
+      name: "Foundation Course on Artificial Intelligence and Green Skills",
+      org: "Edunet Foundation — Skill4Future",
+      year: "2025",
+      file: "Certificates/Edunet certificate.pdf"
+    },
+    {
+      category: "Python",
+      name: "The Joy of Computing Using Python",
+      org: "NPTEL / SWAYAM",
+      year: "2025",
+      file: "Certificates/The Joy of Computing using Python.pdf"
+    },
+    {
+        category: "AI Foundation",
+        name: "AI FUNDAMENTALS",
+        org: "NavGurukul",
+        year: "2026",
+        file: "Certificates/AI WORKSHOP (1).pdf"
+    },
+    {
+      category: "Emerging Technology",
+      name: "Drone Technology: Foundation and Applications",
+      org: "Bootcamp Program",
+      year: "2025",
+      file: "Certificates/19_Alle Ajay Chandrashekhar_certificate.pdf"
+    },
+    {
+      category: "Cloud / Data / AI",
+      name: "Azure Cloud, Data & AI",
+      org: "Microsoft",
+      year: "2026",
+      file: "Certificates/Microsoft certificate.pdf"
+    },
+    {
+      category: "Generative AI",
+      name: "Generative AI Mastermind",
+      org: "Outskill",
+      year: "2026",
+      file: "Certificates/Alle_Ajay_Chandrashekhar_Certificate.pdf"
+    }
+  ];
+
+  const certGrid = document.getElementById("certGrid");
+  const certModal = document.getElementById("certModal");
+  const certModalTitle = document.getElementById("certModalTitle");
+  const certModalContent = document.getElementById("certModalContent");
+  const certModalClose = document.getElementById("certModalClose");
+
+  function renderCertificates(){
+    if(!certGrid) return;
+
+    certGrid.innerHTML = certificates.map((cert, index) => `
+      <article class="cert-card" data-cert-index="${index}" tabindex="0">
+        <div>
+          <div class="cert-cat">${cert.category}</div>
+          <div class="cert-name">${cert.name}</div>
+          <div class="cert-org">${cert.org}</div>
+        </div>
+        <div class="cert-foot">
+          <span class="cert-year">${cert.year}</span>
+          <button class="cert-btn" type="button" data-cert-view="${index}">
+            View →
+          </button>
+        </div>
+      </article>
+    `).join("");
+
+    certGrid.querySelectorAll("[data-cert-view]").forEach(button => {
+      button.addEventListener("click", () => openCertificate(Number(button.dataset.certView)));
+    });
+  }
+
+  function openCertificate(index){
+    const cert = certificates[index];
+    if(!cert || !certModal) return;
+
+    certModalTitle.textContent = cert.name;
+    certModalContent.innerHTML = "";
+
+    const file = cert.file || "";
+    const lower = file.toLowerCase();
+
+    if(lower.endsWith(".pdf")){
+      const iframe = document.createElement("iframe");
+      iframe.src = file;
+      iframe.title = cert.name;
+      certModalContent.appendChild(iframe);
+    }else if(/\.(png|jpe?g|webp|gif)$/i.test(lower)){
+      const image = document.createElement("img");
+      image.src = file;
+      image.alt = cert.name;
+      certModalContent.appendChild(image);
+    }else{
+      const message = document.createElement("div");
+      message.className = "cert-empty";
+      message.innerHTML = `
+        Certificate file not found or unsupported.<br>
+        Add a PDF or image file in the <strong>certificates</strong> folder.
+      `;
+      certModalContent.appendChild(message);
+    }
+
+    certModal.classList.add("open");
+    certModal.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+
+  function closeCertificate(){
+    if(!certModal) return;
+    certModal.classList.remove("open");
+    certModal.setAttribute("aria-hidden","true");
+    certModalContent.innerHTML="";
+    document.body.style.overflow="";
+  }
+
+  certModalClose?.addEventListener("click", closeCertificate);
+  certModal?.addEventListener("click", e => {
+    if(e.target === certModal) closeCertificate();
+  });
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape") closeCertificate();
+  });
+
+  renderCertificates();
+
+  // ===================== TOUCH HIGHLIGHTS =====================
+  const interactiveItems = document.querySelectorAll(
+    ".skill-item, .project, .edu-row, .cert-card"
+  );
+
+  interactiveItems.forEach(item => {
+    item.addEventListener("pointerdown", () => {
+      interactiveItems.forEach(el => el.classList.remove("touch-active"));
+      item.classList.add("touch-active");
+      setTimeout(() => item.classList.remove("touch-active"), 900);
+    }, {passive:true});
+  });
+
+
+  /* =========================================================
+     AJAY 2.0 — ADVANCED INTERACTIONS
+     ========================================================= */
+
+  // Project case studies
+  const caseStudies = {
+    "wifi":{
+      kicker:"ESP32 × AUTOMATION",
+      title:"WI-FI ATTENDANCE SYSTEM",
+      boxes:[
+        ["Problem","Manual attendance takes time and can introduce errors. The goal was to automate classroom attendance using devices already carried by students."],
+        ["Solution","ESP32 modules detect known device MAC addresses and send attendance events to Google Apps Script, which updates Google Sheets."],
+        ["My Role","Hardware setup, ESP32 programming, attendance logic, Google Apps Script integration and spreadsheet workflow."],
+        ["Stack","ESP32 · Arduino IDE · Wi-Fi · Google Apps Script · Google Sheets"],
+        ["Engineering Challenge","Creating a reliable flow from device detection to cloud-side record updates while keeping the classroom workflow simple."],
+        ["Interview Talking Point","Explain the complete data flow: device → ESP32 → Apps Script → Google Sheet, plus how false positives and duplicate records can be handled."]
+      ]
+    },
+    "smart-home":{
+      kicker:"COMPUTER VISION × EMBEDDED",
+      title:"SMART HOME AUTOMATION",
+      boxes:[
+        ["Problem","Create a home automation system that can work without internet and still support multiple control methods."],
+        ["Solution","A Raspberry Pi camera performs gesture recognition with OpenCV and MediaPipe, while Arduino handles control. IR and manual switches act as backup inputs."],
+        ["My Role","Computer vision and gesture-recognition component."],
+        ["Stack","Python · OpenCV · MediaPipe · Raspberry Pi · Arduino"],
+        ["Engineering Challenge","Making gesture recognition usable in a real environment and translating visual gestures into dependable hardware commands."],
+        ["Interview Talking Point","Be ready to explain the camera pipeline, landmark detection, gesture classification and how the command reaches the controller."]
+      ]
+    },
+    "cla":{
+      kicker:"DIGITAL DESIGN × VERILOG",
+      title:"4-BIT CARRY LOOK-AHEAD ADDER",
+      boxes:[
+        ["Problem","Ripple-carry addition becomes slower as carry propagation moves through each stage."],
+        ["Solution","A 4-bit Carry Look-Ahead Adder calculates carry signals using propagate and generate logic, reducing serial carry dependency."],
+        ["My Role","Designed and verified the Verilog implementation and simulation."],
+        ["Stack","Verilog · Digital Electronics · EDA Playground"],
+        ["Engineering Challenge","Getting the carry equations, module structure and testbench verification correct."],
+        ["Interview Talking Point","Explain generate G = A·B, propagate P = A⊕B, and how these terms produce the carry equations."]
+      ]
+    },
+    "python":{
+      kicker:"PYTHON × PROBLEM SOLVING",
+      title:"PYTHON PROJECTS",
+      boxes:[
+        ["Library Book Management","A practical CRUD-style project for managing books and library records."],
+        ["Task Scheduler","A programming exercise focused on organizing tasks and execution logic."],
+        ["Traffic Simulation","A Python-based simulation concept for modelling traffic behaviour and movement."],
+        ["Why It Matters","These smaller projects demonstrate the habit of turning concepts into working programs rather than only studying syntax."],
+        ["Next Step","Selected projects can be upgraded with tests, persistence, APIs and web interfaces."]
+      ]
+    }
+  };
+
+  const caseModal = document.getElementById("caseModal");
+  const caseTitle = document.getElementById("caseTitle");
+  const caseSub = document.getElementById("caseSub");
+  const caseGrid = document.getElementById("caseGrid");
+  const caseClose = document.getElementById("caseClose");
+
+  function openCase(key){
+    const data = caseStudies[key];
+    if(!data || !caseModal) return;
+    caseSub.textContent = data.kicker;
+    caseTitle.textContent = data.title;
+    caseGrid.innerHTML = data.boxes.map(([h,p]) => `
+      <div class="case-box"><h4>${h}</h4><p>${p}</p></div>
+    `).join("");
+    caseModal.classList.add("open");
+    caseModal.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+  function closeCase(){
+    caseModal?.classList.remove("open");
+    caseModal?.setAttribute("aria-hidden","true");
+    if(!document.querySelector(".ai-overlay.open,.dev-overlay.open,.cert-modal.open")) document.body.style.overflow="";
+  }
+  document.querySelectorAll("[data-case]").forEach(btn=>{
+    btn.addEventListener("click",()=>openCase(btn.dataset.case));
+  });
+  caseClose?.addEventListener("click",closeCase);
+  caseModal?.addEventListener("click",e=>{if(e.target===caseModal)closeCase();});
+
+  // AJAY AI — offline portfolio-aware agent with optional secure backend.
+  const AI_ENDPOINT = window.AJAY_AI_ENDPOINT || "";
+  const aiOverlay=document.getElementById("aiOverlay");
+  const aiLauncher=document.getElementById("aiLauncher");
+  const aiClose=document.getElementById("aiClose");
+  const aiMessages=document.getElementById("aiMessages");
+  const aiInput=document.getElementById("aiInput");
+  const aiSend=document.getElementById("aiSend");
+  const recruiterMode=document.getElementById("recruiterMode");
+
+  const portfolioKnowledge = {
+    about:"Ajay is an Electronics & Communication Engineering student focused increasingly on software, Python, AI/ML, embedded systems and practical problem solving. His approach is to learn by building real projects.",
+    projects:"Featured projects include a,\n01. Wi-Fi Based Attendance System using ESP32, MAC-address detection, Google Apps Script and Google Sheets;\n02. Smart Home Automation using Raspberry Pi, OpenCV, MediaPipe and Arduino;\n03. 4-bit Carry Look-Ahead Adder in Verilog.",
+    skills:"Python, problem solving, basic data structures, C/C++, ESP32, Arduino IDE, embedded systems, microcontrollers, Google Apps Script, Google Sheets, Git/GitHub, web technologies, digital electronics and communication systems.",
+    experience:"Ajay's portfolio lists a Data Science internship at Thiranex involving data cleaning, outlier handling, duplicates, Pandas and visualization.",
+    education:"Bachelor of Engineering in Electronics & Communication Engineering, 2024–2027.\nDiploma in Electrical Engineering, 2020–2023.",
+    contact:"Email: ajayalle14@gmail.com. GitHub: github.com/ajayalle. LinkedIn: linkedin.com/in/alle-ajay.",
+    resume:"The resume button is in the resume section, You can check from there."
+  };
+
+  function addAiMessage(text,type="bot"){
+    const div=document.createElement("div");
+    div.className=`ai-msg ${type}`;
+    div.innerHTML=`<small>${type==="bot"?"AJAY AI":"YOU"}</small>${text}`;
+    aiMessages.appendChild(div);
+    aiMessages.scrollTop=aiMessages.scrollHeight;
+  }
+
+  function openAI(prefill=""){
+    aiOverlay.classList.add("open");
+    aiOverlay.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+    if(!aiMessages.children.length){
+      addAiMessage("Hi! I'm Ajay's portfolio assistant. Ask me about his projects, skills, experience, education, resume or contact details.");
+    }
+    if(prefill){aiInput.value=prefill;sendAI();}
+    else setTimeout(()=>aiInput?.focus(),80);
+  }
+  function closeAI(){
+    aiOverlay.classList.remove("open");
+    aiOverlay.setAttribute("aria-hidden","true");
+    if(!document.querySelector(".case-modal.open,.dev-overlay.open,.cert-modal.open")) document.body.style.overflow="";
+  }
+
+  function localAI(q){
+    const s=q.toLowerCase();
+    if(recruiterMode?.checked){
+      return `Ajay combines ECE fundamentals with Python/software projects, embedded systems and applied AI/computer-vision work. Relevant strengths include practical project building, hardware–software integration and learning by implementation. Ask about a specific role for a more targeted summary.`;
+    }
+    if(/who|about|ajay|introduction|profile/.test(s)) return portfolioKnowledge.about;
+    if(/project|build|work|attendance|smart home|adder|python project/.test(s)) return portfolioKnowledge.projects;
+    if(/skill|technology|stack|language/.test(s)) return portfolioKnowledge.skills;
+    if(/experience|intern|thiranex/.test(s)) return portfolioKnowledge.experience;
+    if(/education|degree|college|diploma/.test(s)) return portfolioKnowledge.education;
+    if(/resume|cv/.test(s)) return portfolioKnowledge.resume;
+    if(/contact|email|linkedin|github|hire|reach/.test(s)) return portfolioKnowledge.contact;
+    if(/open|show|go to|navigate/.test(s)){
+      if(/about/.test(s)){document.getElementById("about")?.scrollIntoView({behavior:"smooth"});return "Opening the About section.";}
+      if(/project|work/.test(s)){document.getElementById("work")?.scrollIntoView({behavior:"smooth"});return "Opening Selected Work.";}
+      if(/skill/.test(s)){document.getElementById("skills")?.scrollIntoView({behavior:"smooth"});return "Opening Expertise.";}
+      if(/contact/.test(s)){document.getElementById("contact")?.scrollIntoView({behavior:"smooth"});return "Opening Contact.";}
+    }
+    return "I can help with Ajay's About, Projects, Skills, Experience, Education, Resume or Contact. Try asking: “What projects has Ajay built?”";
+  }
+
+  async function sendAI(){
+    const q=aiInput?.value.trim();
+    if(!q)return;
+    addAiMessage(q,"user");
+    aiInput.value="";
+    if(AI_ENDPOINT){
+      try{
+        addAiMessage("Thinking…","bot");
+        const r=await fetch(AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:q,recruiterMode:!!recruiterMode?.checked})});
+        const data=await r.json();
+        aiMessages.lastElementChild.remove();
+        addAiMessage(data.reply || "The AI service returned no reply.");
+        return;
+      }catch(err){
+        addAiMessage("The live AI endpoint is unavailable, so I'm switching to portfolio mode.");
+      }
+    }
+    setTimeout(()=>addAiMessage(localAI(q)),220);
+  }
+  aiLauncher?.addEventListener("click",()=>openAI());
+  aiClose?.addEventListener("click",closeAI);
+  aiOverlay?.addEventListener("click",e=>{if(e.target===aiOverlay)closeAI();});
+  aiSend?.addEventListener("click",sendAI);
+  aiInput?.addEventListener("keydown",e=>{if(e.key==="Enter")sendAI();});
+  document.querySelectorAll("[data-ai-quick]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const map={about:"Tell me about Ajay",projects:"What projects has Ajay built?",skills:"What are Ajay's skills?",resume:"Where is Ajay's resume?",contact:"How can I contact Ajay?"};
+      aiInput.value=map[btn.dataset.aiQuick]||"Tell me about Ajay";
+      sendAI();
+    });
+  });
+  document.querySelectorAll("[data-ai-project]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      openAI(`Explain Ajay's ${btn.dataset.aiProject} project`);
+    });
+  });
+
+  // Recruiter mode changes the assistant's tone immediately.
+  recruiterMode?.addEventListener("change",()=>{
+    addAiMessage(recruiterMode.checked
+      ? "Recruiter Mode enabled. I'll prioritize role fit, evidence, projects and technical strengths."
+      : "Recruiter Mode disabled. Back to general portfolio assistance.");
+  });
+
+  // Dev Mode
+  const devOverlay=document.getElementById("devOverlay");
+  const devTrigger=document.getElementById("devTrigger");
+  const devClose=document.getElementById("devClose");
+  const devInput=document.getElementById("devInput");
+  const devRun=document.getElementById("devRun");
+  const devOutput=document.getElementById("devOutput");
+
+  const devHelp = `Available commands:
+help       show commands
+about      portfolio summary
+projects   list featured projects
+skills     show current stack
+github     open GitHub
+resume     open resume
+ai         open AJAY AI
+contact    jump to contact
+clear      clear console
+exit       close dev mode`;
+
+  function devPrint(text){
+    if(devOutput) devOutput.textContent += (devOutput.textContent ? "\n\n" : "") + text;
+    devOutput.scrollTop=devOutput.scrollHeight;
+  }
+  function runDevCommand(raw){
+    const cmd=raw.trim().toLowerCase();
+    if(!cmd)return;
+    devPrint(`> ${cmd}`);
+    if(cmd==="help")devPrint(devHelp);
+    else if(cmd==="about")devPrint("AJAY.DEV — Electronics × Software × AI/ML. Built around practical projects and continuous learning.");
+    else if(cmd==="projects")devPrint("01 Wi-Fi Attendance System\n02 Smart Home Automation\n03 4-bit Carry Look-Ahead Adder\n04 Python Projects");
+    else if(cmd==="skills")devPrint("Python · C/C++ · JavaScript · ESP32 · Arduino · OpenCV · MediaPipe · Git/GitHub · Embedded · IoT");
+    else if(cmd==="github"){window.open("https://github.com/ajayalle","_blank","noopener");devPrint("Opening GitHub…");}
+    else if(cmd==="resume"){document.querySelector(".resume-cta")?.scrollIntoView({behavior:"smooth"});devPrint("Resume section opened. Configure the PDF href before deployment.");}
+    else if(cmd==="ai"){closeDev();openAI();}
+    else if(cmd==="contact"){closeDev();document.getElementById("contact")?.scrollIntoView({behavior:"smooth"});}
+    else if(cmd==="clear"){devOutput.textContent="";}
+    else if(cmd==="exit")closeDev();
+    else devPrint(`command not found: ${cmd}\nType "help" for available commands.`);
+    if(devInput)devInput.value="";
+  }
+  function openDev(){
+    devOverlay.classList.add("open");
+    devOverlay.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+    if(!devOutput.textContent)devPrint("AJAY.DEV MODE initialized.\nType \"help\" to begin.");
+    setTimeout(()=>devInput?.focus(),80);
+  }
+  function closeDev(){
+    devOverlay.classList.remove("open");
+    devOverlay.setAttribute("aria-hidden","true");
+    if(!document.querySelector(".case-modal.open,.ai-overlay.open,.cert-modal.open")) document.body.style.overflow="";
+  }
+  devTrigger?.addEventListener("click",openDev);
+  devClose?.addEventListener("click",closeDev);
+  devOverlay?.addEventListener("click",e=>{if(e.target===devOverlay)closeDev();});
+  devRun?.addEventListener("click",()=>runDevCommand(devInput.value));
+  devInput?.addEventListener("keydown",e=>{if(e.key==="Enter")runDevCommand(devInput.value);});
+  document.addEventListener("keydown",e=>{
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="a"){e.preventDefault();openDev();}
+    if(e.key==="Escape"){closeCase();closeAI();closeDev();}
+  });
+
+  // Add a tiny recruiter-mode result in the AI when enabled.
+  const resumeButtons=document.querySelectorAll('a[href="#"]');
+  resumeButtons.forEach(btn=>{
+    if(btn.textContent.toLowerCase().includes("download resume")){
+      btn.addEventListener("click",e=>{
+        e.preventDefault();
+        openAI("How can I access Ajay's resume?");
+      });
+    }
+  });
+
+</script>
+</body>
+</html>
