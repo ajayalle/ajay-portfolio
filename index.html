@@ -2412,6 +2412,67 @@
   const aiSend=document.getElementById("aiSend");
   const recruiterMode=document.getElementById("recruiterMode");
 
+  // Strict project-specific AJAY AI mode.
+  let activeAIProject = null;
+
+  const projectAIKnowledge = {
+    "wifi": {
+      title:"Wi-Fi Based Attendance System",
+      keywords:/wifi|wi-fi|attendance|esp32|mac|device detection|google sheets|google apps script|arduino|iot|automation|attendance record|classroom/,
+      answer:`This is Ajay's Wi-Fi Based Attendance System.
+
+Purpose: Automate classroom attendance using Wi-Fi/device detection instead of manual attendance.
+
+How it works: ESP32 modules detect known student devices through MAC addresses. Attendance events are sent to Google Apps Script, which updates Google Sheets.
+
+Technologies: ESP32, Arduino IDE, Wi-Fi, Google Apps Script and Google Sheets.
+
+Ajay's role: Hardware setup, ESP32 programming, attendance logic, Google Apps Script integration and the spreadsheet workflow.
+
+Engineering focus: Reliable device detection, attendance logic, avoiding false positives/duplicate records, and connecting hardware to the cloud-side record system.`
+    },
+    "smart-home": {
+      title:"Smart Home Automation",
+      keywords:/smart home|home automation|raspberry pi|opencv|mediapipe|gesture|gesture recognition|arduino|ir remote|manual switch|computer vision|offline|without internet/,
+      answer:`This is Ajay's Smart Home Automation project.
+
+Purpose: Create a home automation system that can work without internet and still provide multiple control methods.
+
+How it works: A Raspberry Pi camera captures gestures. OpenCV and MediaPipe are used for computer vision and gesture recognition. The recognized command is passed to Arduino for hardware control. IR remote and manual switches provide backup control.
+
+Technologies: Python, OpenCV, MediaPipe, Raspberry Pi and Arduino.
+
+Ajay's role: Computer vision and gesture-recognition component.
+
+Engineering focus: Making gesture recognition usable in a real environment and translating visual gestures into dependable hardware commands.`
+    },
+    "cla": {
+      title:"4-bit Carry Look-Ahead Adder",
+      keywords:/carry look|carry look-ahead|adder|4-bit|4 bit|verilog|digital logic|digital electronics|eda playground/,
+      answer:`This is Ajay's 4-bit Carry Look-Ahead Adder project.
+
+Purpose: Implement a 4-bit Carry Look-Ahead Adder as a digital logic design project.
+
+Implementation: The design is written in Verilog and simulated and verified for correctness.
+
+Technologies: Verilog, Digital Electronics and EDA Playground.
+
+What it demonstrates: Digital logic design, carry-generation concepts, hardware description language usage and simulation-based verification.`
+    },
+    "python": {
+      title:"Python Projects",
+      keywords:/python|library book|book management|task scheduler|traffic simulation|crud|simulation|programming|problem solving/,
+      answer:`This is Ajay's Python Projects group.
+
+It includes:
+• Library Book Management
+• Task Scheduler
+• Traffic Simulation
+
+These are practical programming projects demonstrating Python programming, problem solving, CRUD-style logic, task organization and simulation.`
+    }
+  };
+
   const portfolioKnowledge = {
     about:"Ajay is an Electronics & Communication Engineering student focused increasingly on software, Python, AI/ML, embedded systems and practical problem solving. His approach is to learn by building real projects.",
     projects:"Featured projects include a,\n01. Wi-Fi Based Attendance System using ESP32, MAC-address detection, Google Apps Script and Google Sheets;\n02. Smart Home Automation using Raspberry Pi, OpenCV, MediaPipe and Arduino;\n03. 4-bit Carry Look-Ahead Adder in Verilog.",
@@ -2434,37 +2495,93 @@
     aiOverlay.classList.add("open");
     aiOverlay.setAttribute("aria-hidden","false");
     document.body.style.overflow="hidden";
+
     if(!aiMessages.children.length){
       addAiMessage("Hi! I'm Ajay's portfolio assistant. Ask me about his projects, skills, experience, education, resume or contact details.");
     }
+
+    if(activeAIProject && projectAIKnowledge[activeAIProject]){
+      addAiMessage(`Project mode: <strong>${projectAIKnowledge[activeAIProject].title}</strong>. I can answer questions about this project only.`);
+    }
+
     if(prefill){aiInput.value=prefill;sendAI();}
     else setTimeout(()=>aiInput?.focus(),80);
   }
   function closeAI(){
+    activeAIProject=null;
     aiOverlay.classList.remove("open");
     aiOverlay.setAttribute("aria-hidden","true");
     if(!document.querySelector(".case-modal.open,.dev-overlay.open,.cert-modal.open")) document.body.style.overflow="";
   }
 
   function localAI(q){
-    const s=q.toLowerCase();
-    if(recruiterMode?.checked){
-      return `Ajay combines ECE fundamentals with Python/software projects, embedded systems and applied AI/computer-vision work. Relevant strengths include practical project building, hardware–software integration and learning by implementation. Ask about a specific role for a more targeted summary.`;
+    const s=q.toLowerCase().trim();
+
+    // STRICT PROJECT MODE
+    if(activeAIProject && projectAIKnowledge[activeAIProject]){
+      const p=projectAIKnowledge[activeAIProject];
+
+      if(p.keywords.test(s) ||
+         /this project|this system|this application|this work|explain it|explain the project|tell me about it|how does it work|what is it|purpose|technology|technologies|tech stack|my role|ajay.?s role|challenge|problem|solution|implementation/.test(s)){
+        return p.answer;
+      }
+
+      return `I'm currently in Ask AI mode for "${p.title}". I can answer questions about this project only.`;
     }
-    if(/who|about|ajay|introduction|profile/.test(s)) return portfolioKnowledge.about;
-    if(/project|build|work|attendance|smart home|adder|python project/.test(s)) return portfolioKnowledge.projects;
-    if(/skill|technology|stack|language/.test(s)) return portfolioKnowledge.skills;
-    if(/experience|intern|thiranex/.test(s)) return portfolioKnowledge.experience;
-    if(/education|degree|college|diploma/.test(s)) return portfolioKnowledge.education;
-    if(/resume|cv/.test(s)) return portfolioKnowledge.resume;
-    if(/contact|email|linkedin|github|hire|reach/.test(s)) return portfolioKnowledge.contact;
+
+    // GENERAL PORTFOLIO MODE
+    // IMPORTANT: specific topics are checked BEFORE the broad "Ajay/about"
+    // rule so questions such as "How can I contact Ajay?" don't become
+    // an About response just because they contain the word "Ajay".
+
+    if(/contact|email|linkedin|github|hire|reach|connect/.test(s)){
+      return portfolioKnowledge.contact;
+    }
+
+    if(/skill|skills|technology|technologies|tech stack|stack|programming language|language|tools|expertise/.test(s)){
+      return portfolioKnowledge.skills;
+    }
+
+    if(/experience|intern|internship|thiranex|data science/.test(s)){
+      return portfolioKnowledge.experience;
+    }
+
+    if(/education|degree|college|diploma|engineering|ece/.test(s)){
+      return portfolioKnowledge.education;
+    }
+
+    if(/resume|cv|curriculum vitae/.test(s)){
+      return portfolioKnowledge.resume;
+    }
+
+    if(/project|projects|build|built|work|attendance|smart home|adder|carry look|python project/.test(s)){
+      return portfolioKnowledge.projects;
+    }
+
+    if(/who is|who's|about ajay|about me|introduction|profile|tell me about ajay|tell me about yourself/.test(s)){
+      return portfolioKnowledge.about;
+    }
+
     if(/open|show|go to|navigate/.test(s)){
-      if(/about/.test(s)){document.getElementById("about")?.scrollIntoView({behavior:"smooth"});return "Opening the About section.";}
-      if(/project|work/.test(s)){document.getElementById("work")?.scrollIntoView({behavior:"smooth"});return "Opening Selected Work.";}
-      if(/skill/.test(s)){document.getElementById("skills")?.scrollIntoView({behavior:"smooth"});return "Opening Expertise.";}
-      if(/contact/.test(s)){document.getElementById("contact")?.scrollIntoView({behavior:"smooth"});return "Opening Contact.";}
+      if(/about/.test(s)){
+        document.getElementById("about")?.scrollIntoView({behavior:"smooth"});
+        return "Opening the About section.";
+      }
+      if(/project|work/.test(s)){
+        document.getElementById("work")?.scrollIntoView({behavior:"smooth"});
+        return "Opening Selected Work.";
+      }
+      if(/skill|expertise/.test(s)){
+        document.getElementById("skills")?.scrollIntoView({behavior:"smooth"});
+        return "Opening Expertise.";
+      }
+      if(/contact/.test(s)){
+        document.getElementById("contact")?.scrollIntoView({behavior:"smooth"});
+        return "Opening Contact.";
+      }
     }
-    return "I can help with Ajay's About, Projects, Skills, Experience, Education, Resume or Contact. Try asking: “What projects has Ajay built?”";
+
+    return "I can answer questions about Ajay's About, Projects, Skills, Experience, Education, Resume and Contact. Try asking a specific question.";
   }
 
   async function sendAI(){
@@ -2486,7 +2603,7 @@
     }
     setTimeout(()=>addAiMessage(localAI(q)),220);
   }
-  aiLauncher?.addEventListener("click",()=>openAI());
+  aiLauncher?.addEventListener("click",()=>{activeAIProject=null;openAI();});
   aiClose?.addEventListener("click",closeAI);
   aiOverlay?.addEventListener("click",e=>{if(e.target===aiOverlay)closeAI();});
   aiSend?.addEventListener("click",sendAI);
@@ -2500,7 +2617,9 @@
   });
   document.querySelectorAll("[data-ai-project]").forEach(btn=>{
     btn.addEventListener("click",()=>{
-      openAI(`Explain Ajay's ${btn.dataset.aiProject} project`);
+      const key=btn.dataset.aiProject;
+      activeAIProject=projectAIKnowledge[key] ? key : null;
+      openAI(`Explain this project: ${projectAIKnowledge[key]?.title || "this project"}`);
     });
   });
 
@@ -2525,6 +2644,7 @@ about      portfolio summary
 projects   list featured projects
 skills     show current stack
 github     open GitHub
+linkedin   open LinkedIn
 resume     open resume
 ai         open AJAY AI
 contact    jump to contact
@@ -2544,8 +2664,9 @@ exit       close dev mode`;
     else if(cmd==="projects")devPrint("01 Wi-Fi Attendance System\n02 Smart Home Automation\n03 4-bit Carry Look-Ahead Adder\n04 Python Projects");
     else if(cmd==="skills")devPrint("Python · C/C++ · JavaScript · ESP32 · Arduino · OpenCV · MediaPipe · Git/GitHub · Embedded · IoT");
     else if(cmd==="github"){window.open("https://github.com/ajayalle","_blank","noopener");devPrint("Opening GitHub…");}
+    else if(cmd==="linkedin"){window.open("https://linkedin.com/in/alle-ajay","_blank","noopener");devPrint("Opening LinkedIn…");}
     else if(cmd==="resume"){document.querySelector(".resume-cta")?.scrollIntoView({behavior:"smooth"});devPrint("Resume section opened. Configure the PDF href before deployment.");}
-    else if(cmd==="ai"){closeDev();openAI();}
+    else if(cmd==="ai"){closeDev();activeAIProject=null;openAI();}
     else if(cmd==="contact"){closeDev();document.getElementById("contact")?.scrollIntoView({behavior:"smooth"});}
     else if(cmd==="clear"){devOutput.textContent="";}
     else if(cmd==="exit")closeDev();
