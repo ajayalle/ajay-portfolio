@@ -2560,6 +2560,89 @@
     src="https://gc.zgo.at/count.js">
   </script>
 
+
+<style id="contact-reference-style">
+  :root{--contact-lime:#d0f43d;}
+  .contact-reference{padding:100px 6vw 110px;background:#050505;color:#f5f5f5;}
+  .contact-reference-grid{max-width:1600px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12vw;align-items:center;}
+  .contact-reference-left .contact-top{margin:0 0 54px;}
+  .contact-reference-left .contact-top h2{font-family:'Inter',sans-serif;font-size:clamp(30px,3vw,38px);font-weight:400;letter-spacing:-.035em;line-height:1.2;text-transform:none;}
+  .contact-reference form.contact-form{gap:52px;}
+  .contact-reference .field label{color:#737b89;font-size:12px;letter-spacing:.04em;margin-bottom:18px;}
+  .contact-reference .field input,.contact-reference .field textarea{font-size:25px;padding:8px 0 22px;border-bottom:1px solid #343434;color:#f5f5f5;}
+  .contact-reference .field input::placeholder,.contact-reference .field textarea::placeholder{color:#263241;opacity:1;}
+  .contact-reference .field textarea{min-height:66px;}
+  .contact-reference form.contact-form button{margin-top:4px;align-self:flex-start;display:flex;align-items:center;gap:24px;padding:28px 48px;border:0;border-radius:18px;background:var(--contact-lime);color:#050505;font-size:15px;font-weight:700;letter-spacing:.08em;min-height:86px;}
+  .contact-reference form.contact-form button span{font-size:27px;line-height:1;}
+  .contact-reference form.contact-form button:hover{background:#dfff59;border-color:#dfff59;transform:translateY(-2px);}
+  .contact-reference-right{padding-top:28px;min-width:0;}
+  .contact-person{display:flex;align-items:center;gap:34px;margin-bottom:52px;}
+  .contact-person-photo{width:145px;height:145px;flex:0 0 145px;position:relative;border:1px solid #242424;border-radius:25px;overflow:hidden;background:#090909;}
+  .contact-person-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(1);}
+  .contact-person-photo span{position:absolute;right:-1px;bottom:-1px;width:27px;height:27px;border:3px solid #050505;border-radius:50%;background:var(--contact-lime);}
+  .contact-person-details h3{font-size:25px;font-weight:700;letter-spacing:-.03em;margin-bottom:8px;}
+  .contact-person-details p,.contact-direct-label{font-size:13px;letter-spacing:.14em;color:#737b89;}
+  .contact-direct-label{margin-bottom:28px;}
+  .contact-direct-email{display:inline-block;max-width:100%;font-size:clamp(23px,2.7vw,44px);letter-spacing:-.035em;line-height:1.25;overflow-wrap:anywhere;color:#f5f5f5;transition:color .25s;}
+  .contact-direct-email:hover{color:var(--contact-lime);}
+  .contact-socials{display:flex;gap:24px;margin-top:46px;}
+  .contact-socials a{width:72px;height:72px;border:1px solid #353535;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color .25s,background .25s,transform .25s;}
+  .contact-socials a:hover{border-color:var(--contact-lime);background:rgba(208,244,61,.07);transform:translateY(-3px);}
+  .contact-socials svg{width:29px;height:29px;fill:none;stroke:#f5f5f5;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  @media(max-width:860px){.contact-reference{padding:85px 7vw 80px}.contact-reference-grid{grid-template-columns:1fr;gap:75px}.contact-reference-right{padding-top:0}.contact-person{margin-bottom:38px}.contact-reference form.contact-form{gap:38px}}
+  @media(max-width:520px){.contact-person{gap:20px}.contact-person-photo{width:105px;height:115px;flex-basis:105px;border-radius:20px}.contact-person-details h3{font-size:20px}.contact-person-details p{font-size:10px}.contact-direct-email{font-size:clamp(22px,6vw,32px)}.contact-socials{gap:15px}.contact-socials a{width:58px;height:58px}.contact-reference form.contact-form button{padding:23px 30px;min-height:72px;font-size:12px}.contact-reference .field input,.contact-reference .field textarea{font-size:20px}}
+</style>
+
+
+<style id="ajay-original-contact-concept">
+  /* A distinct contact concept: editorial layout with crimson signal accents */
+  .contact-reference{padding:135px 6vw 125px;background:radial-gradient(ellipse at 88% 22%,rgba(143,16,24,.18),transparent 32%),#070707;position:relative;isolation:isolate;overflow:hidden}
+  .contact-reference:before{content:"AA";position:absolute;right:-.04em;top:4%;font-family:'Anton',sans-serif;font-size:clamp(230px,38vw,570px);line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(243,241,237,.055);pointer-events:none;z-index:-1}
+  .contact-reference:after{content:"";position:absolute;left:6vw;right:6vw;top:0;height:1px;background:linear-gradient(90deg,var(--crimson-bright),rgba(243,241,237,.12) 48%,transparent)}
+  .contact-reference-grid{max-width:1500px;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:clamp(50px,8vw,130px);align-items:start}
+  .contact-reference-left .contact-top{margin:0 0 44px}
+  .contact-reference-left .contact-top:before{content:"07 / GET IN TOUCH";display:block;font-size:10px;letter-spacing:.24em;color:var(--crimson-bright);margin-bottom:25px;font-weight:600}
+  .contact-reference-left .contact-top h2{font-family:'Anton',sans-serif;font-size:clamp(58px,8vw,112px);line-height:.9;letter-spacing:-.015em;text-transform:uppercase;max-width:650px}
+  .contact-reference-left .contact-top h2:after{content:"Let's make it useful.";display:block;font-family:'Inter',sans-serif;font-size:clamp(14px,1.4vw,17px);font-weight:400;letter-spacing:.01em;line-height:1.6;color:var(--gray);margin-top:24px;text-transform:none}
+  .contact-reference form.contact-form{gap:25px;padding:32px;border:1px solid rgba(243,241,237,.13);background:rgba(12,12,12,.72);position:relative}
+  .contact-reference form.contact-form:before{content:"PROJECT INQUIRY";position:absolute;top:-8px;left:22px;background:#0b0b0b;padding:0 10px;color:#888;font-size:9px;letter-spacing:.2em}
+  .contact-reference .field{padding:0 0 4px}
+  .contact-reference .field label{font-size:10px;letter-spacing:.18em;color:#a1a1a1;margin-bottom:11px}
+  .contact-reference .field input,.contact-reference .field textarea{font-size:17px;padding:9px 0 15px;border-bottom:1px solid rgba(243,241,237,.2);color:#f3f1ed}
+  .contact-reference .field input:focus,.contact-reference .field textarea:focus{border-color:var(--crimson-bright)}
+  .contact-reference .field input::placeholder,.contact-reference .field textarea::placeholder{color:#626262}
+  .contact-reference .field textarea{min-height:76px}
+  .contact-reference form.contact-form button{margin-top:8px;min-height:65px;padding:20px 24px;border-radius:0;background:var(--crimson-bright);color:#fff;font-size:11px;letter-spacing:.16em;justify-content:space-between;width:100%;transition:background .3s,transform .3s}
+  .contact-reference form.contact-form button:hover{background:#d12c36;transform:translateY(-3px)}
+  .contact-reference form.contact-form button span{font-size:24px}
+  .contact-reference-right{padding:0;align-self:stretch;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .contact-person{gap:22px;margin:0 0 54px;padding-bottom:28px;border-bottom:1px solid rgba(243,241,237,.15)}
+  .contact-person-photo{width:92px;height:104px;flex:0 0 92px;border-radius:0;border-color:rgba(243,241,237,.22);background:#111}
+  .contact-person-photo span{width:12px;height:12px;border:2px solid #070707;right:7px;bottom:7px}
+  .contact-person-details h3{font-family:'Anton',sans-serif;font-size:30px;font-weight:400;letter-spacing:.015em;text-transform:uppercase;margin-bottom:7px}
+  .contact-person-details p{font-size:10px;letter-spacing:.2em;color:#999}
+  .contact-direct-label{font-size:10px;letter-spacing:.22em;color:var(--crimson-bright);margin-bottom:20px}
+  .contact-direct-email {
+    font-size: clamp(14px, 1.8vw, 28px);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.18;
+    padding-bottom: 17px;
+    border-bottom: 1px solid rgba(243, 241, 237, 0.2);
+    white-space: nowrap;
+}
+  .contact-direct-email:hover{color:#fff}
+  .contact-direct-email:after{content:"↗";display:inline-block;color:var(--crimson-bright);font-size:.6em;margin-left:12px;vertical-align:top;transition:transform .25s}
+  .contact-direct-email:hover:after{transform:translate(4px,-4px)}
+  .contact-socials{gap:10px;margin-top:34px}
+  .contact-socials a{width:48px;height:48px;border-radius:0;border-color:rgba(243,241,237,.22)}
+  .contact-socials a:hover{border-color:var(--crimson-bright);background:rgba(184,35,44,.13);transform:translateY(-3px)}
+  .contact-socials svg{width:20px;height:20px}
+  .contact-reference-right:after{content:"AVAILABLE FOR COLLABORATIONS · PYTHON · AI/ML · SOFTWARE";font-size:9px;line-height:1.8;letter-spacing:.16em;color:#777;margin-top:58px;max-width:360px}
+  @media(max-width:860px){.contact-reference{padding:95px 7vw 85px}.contact-reference-grid{grid-template-columns:1fr;gap:70px}.contact-reference:before{top:20%;right:-.1em}.contact-reference-right:after{margin-top:38px}}
+  @media(max-width:520px){.contact-reference form.contact-form{padding:26px 20px;gap:23px}.contact-reference-left .contact-top h2{font-size:clamp(53px,15vw,76px)}.contact-person-photo{width:78px;height:90px;flex-basis:78px}.contact-person-details h3{font-size:24px}.contact-direct-email{font-size:clamp(22px,7vw,32px)}.contact-reference form.contact-form button{padding:19px 20px;min-height:60px}}
+</style>
+
 </head>
 <body>
 
@@ -3134,30 +3217,41 @@
 </div>
 
 <!-- ============ CONTACT ============ -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="contact-top" data-reveal="1">
-      <h2 class="display" style="font-size:clamp(40px,7vw,88px);">LET'S BUILD<br>SOMETHING.</h2>
-      <p>Have an idea, project or opportunity? Let's connect.</p>
+<section class="contact contact-reference" id="contact">
+  <div class="contact-reference-grid">
+    <div class="contact-reference-left">
+      <div class="contact-top" data-reveal="1">
+        <h2>Let’s Connect.</h2>
+      </div>
+      <form class="contact-form" data-reveal="2" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message Sent'; this.querySelector('button').style.background='var(--contact-lime)'; this.querySelector('button').style.borderColor='var(--contact-lime)';">
+        <div class="field"><label for="cname">Name</label><input id="cname" type="text" placeholder="John Doe" required></div>
+        <div class="field"><label for="cemail">Email</label><input id="cemail" type="email" placeholder="john@example.com" required></div>
+        <div class="field"><label for="cmsg">Proposal</label><textarea id="cmsg" placeholder="Project details..." required></textarea></div>
+        <button type="submit">Send Message <span aria-hidden="true">↗</span></button>
+      </form>
     </div>
 
-    <div class="contact-grid">
-      <div class="contact-links" data-reveal="2">
-        <a href="mailto:ajayalle14@gmail.com"><span><span class="cl-label">Email</span><br>ajayalle14@gmail.com</span><span class="arrow-r">→</span></a>
-        <a href="https://linkedin.com/in/alle-ajay" target="_blank" rel="noopener"><span><span class="cl-label">LinkedIn</span><br>alle-ajay</span><span class="arrow-r">→</span></a>
-        <a href="https://github.com/ajayalle" target="_blank" rel="noopener"><span><span class="cl-label">GitHub</span><br>ajayalle</span><span class="arrow-r">→</span></a>
+    <div class="contact-reference-right" data-reveal="3">
+      <div class="contact-person">
+        <div class="contact-person-photo"><img src="ajay-portrait-3.png" alt="Alle Ajay"><span></span></div>
+        <div class="contact-person-details"><h3>Alle Ajay</h3><p>SOFTWARE DEVELOPER</p></div>
       </div>
-
-      <form class="contact-form" data-reveal="3" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message Sent'; this.querySelector('button').style.background='var(--crimson-bright)'; this.querySelector('button').style.borderColor='var(--crimson-bright)';">
-        <div class="field"><label for="cname">Name</label><input id="cname" type="text" placeholder="Cristo Ron" required></div>
-        <div class="field"><label for="cemail">Email</label><input id="cemail" type="email" placeholder="cristo@example.com" required></div>
-        <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" placeholder="Project details..." required></textarea></div>
-        <button type="submit">Send Message</button>
-      </form>
+      <div class="contact-direct-label">CONTACT DIRECTLY</div>
+      <a class="contact-direct-email" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ajaychandrashekharalle%40gmail.com" target="_blank" rel="noopener">ajaychandrashekharalle@gmail.com</a>
+      <div class="contact-socials">
+        <a href="https://github.com/ajayalle" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.2-1.5 6.2-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13 13 0 0 0-6.9 0C5.5 1.1 4.3 1.5 4.3 1.5a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-.9 2.7V22"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/alle-ajay" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v11M4 4.5v.1M9 20v-6.2c0-2.2 1.2-3.5 3.1-3.5s3.1 1.3 3.1 3.5V20M9 10.5V20M2 9h4v11H2zM9 9h4v1.7"/></svg>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ajaychandrashekharalle%40gmail.com" target="_blank" rel="noopener" aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
-
 
 <!-- ============ CERTIFICATE VIEWER ============ -->
 <div class="cert-modal" id="certModal" aria-hidden="true">
@@ -3203,7 +3297,7 @@
         <div class="final-footer-label">CONNECT / SOCIAL</div>
         <a href="https://linkedin.com/in/alle-ajay" target="_blank" rel="noopener">LINKEDIN <span>in</span></a>
         <a href="https://github.com/ajayalle" target="_blank" rel="noopener">GITHUB <span>⌘</span></a>
-        <a href="mailto:ajayalle14@gmail.com">EMAIL <span>↗</span></a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ajaychandrashekharalle%40gmail.com" target="_blank" rel="noopener">EMAIL <span>↗</span></a>
       </div>
     </div>
   </div>
@@ -3778,7 +3872,7 @@ These are practical programming projects demonstrating Python programming, probl
     skills:"Python, problem solving, basic data structures, C/C++, ESP32, Arduino IDE, embedded systems, microcontrollers, Google Apps Script, Google Sheets, Git/GitHub, web technologies, digital electronics and communication systems.",
     experience:"Ajay's portfolio lists a Python With AI internship at EWB EDU TECH PVT. LTD. involving  Programming fundamentals, data analysis, problem-solving, and project development.",
     education:"Bachelor of Engineering in Electronics & Communication Engineering, 2024–2027.\nDiploma in Electrical Engineering, 2020–2023.",
-    contact:"Email: ajayalle14@gmail.com. GitHub: github.com/ajayalle. LinkedIn: linkedin.com/in/alle-ajay.",
+    contact:"Email: ajaychandrashekharalle@gmail.com. GitHub: github.com/ajayalle. LinkedIn: linkedin.com/in/alle-ajay.",
     resume:"The resume button is in the resume section, You can check from there."
   };
 
